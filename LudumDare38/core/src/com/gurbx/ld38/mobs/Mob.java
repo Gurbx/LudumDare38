@@ -14,15 +14,17 @@ import com.badlogic.gdx.math.Vector2;
 import com.gurbx.ld38.house.House;
 import com.gurbx.ld38.utils.Constants;
 import com.gurbx.ld38.utils.FloatingTextHandler;
+import com.gurbx.ld38.utils.FriendlyProjectile;
 import com.gurbx.ld38.utils.GameInterface;
 import com.gurbx.ld38.utils.Target;
 import com.gurbx.ld38.waves.Enemy;
 
-public class Mob implements GameInterface, Target {
+public class Mob implements Target {
 	private Vector2 position;
 	private MobType type;
 	private Animation move, stand, attack;
 	private Animation currentAnimation;
+	private TextureRegion projectileTex;
 	private float targetX, targetY;
 	private float dx, dy;
 	private float width, height;
@@ -69,6 +71,8 @@ public class Mob implements GameInterface, Target {
 		   this.height =moveFrames[0].getRegionHeight();
 	       move = new Animation(1/16f, moveFrames);  
 	       currentAnimation = move;
+	       
+	       projectileTex = new TextureRegion(atlas.findRegion("spear"));
 	}
 
 	public void moveTo(float x, float y) {
@@ -88,8 +92,7 @@ public class Mob implements GameInterface, Target {
 		dy = MathUtils.sin(radians) * speed;
 	}
 
-	@Override
-	public void update(float delta) {
+	public void update(float delta, ArrayList<Enemy> enemies) {
 		attackTimer -= delta;
 		if (attackTimer <= 0) canAttack = true;
 		newTargetTimer-=delta;
@@ -97,10 +100,10 @@ public class Mob implements GameInterface, Target {
 			canSelectNewTarget = true;
 		}
 		elapsedTime += delta;
-		handleMovement(delta);
+		handleMovement(delta, enemies);
 	}
 
-	private void handleMovement(float delta) {
+	private void handleMovement(float delta, ArrayList<Enemy> enemies) {
 		if (hasMovementTarget) {
 			position.x += dx * delta;
 			position.y += dy * delta;
@@ -109,7 +112,7 @@ public class Mob implements GameInterface, Target {
 		if (Math.abs(position.x - targetX) <= targetRange && Math.abs(position.y - targetY) <= targetRange) {
 			hasMovementTarget = false;
 			
-			if (target != null) {
+			if (target != null && type.isRanged() == false) {
 				if (target.isDead() == false && canAttack) {
 					target.damage(type.getDamage());
 					canAttack = false;
@@ -118,9 +121,18 @@ public class Mob implements GameInterface, Target {
 			}
 		}
 		
+		if (target != null) {
+			if (target.isDead() == false && canAttack) {
+				MobProjectileHandler.addProjectile(
+						new FriendlyProjectile(position.x, position.y, target.getPosition().x, target.getPosition().y,
+								100, projectileTex, enemies, type.getDamage()));
+				canAttack = false;
+				attackTimer = type.getAttackSpeed();
+			}
+		}
+		
 	}
 
-	@Override
 	public void render(SpriteBatch batch) {
 		batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), position.x - width*0.5f, position.y-height*0.5f, width/2, height/2, width, height, 1f, 1f, (float) Math.toDegrees(radians) + 90);
 		
@@ -152,7 +164,6 @@ public class Mob implements GameInterface, Target {
 		}
 	}
 
-	@Override
 	public void dispse() {
 		
 	}
@@ -197,7 +208,7 @@ public class Mob implements GameInterface, Target {
 		}
 		if (mobDistace <= type.getRange()) {
 			target = enemies.get(index);
-			moveTo(target.getPosition().x, target.getPosition().y);
+			if (type.isRanged() == false) moveTo(target.getPosition().x, target.getPosition().y);
 			canSelectNewTarget = false;
 			newTargetTimer = newTargetTime;
 		} else {

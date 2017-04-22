@@ -7,7 +7,7 @@ import com.gurbx.ld38.utils.FloatingTextHandler;
 
 public class ResinPump extends House {
 	private int amountGenerated = 5;
-	private float cooldown = 2;
+	private float cooldown = 0.2f;
 	private float timer;
 	private Resources resources;
 

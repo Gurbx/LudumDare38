@@ -2,8 +2,8 @@ package com.gurbx.ld38.house;
 
 public enum HouseType {
 	BASIC("basic", 5f, 20, 0, 0, "1", 50),
-	BARRACKS("Barracks", 1f, 50, 0, 0, "1", 50),
-	RESIN_PUMP("Resin Pump", 7.5f, 5, 0, 0, "3", 75),
+	BARRACKS("Barracks", 1f, 50, 0, 0, "1", 25),
+	RESIN_PUMP("Resin Pump", 2f, 5, 0, 0, "3", 25),
 	POLLEN_PUMP("Pollen Punp", 2f, 5, 0, 0, "2", 25);
 	
 	private String name;

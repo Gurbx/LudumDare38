@@ -22,6 +22,7 @@ public class MobHandler implements GameInterface {
 	private Random random;
 	private Resources resources;
 	private ArrayList<Enemy> enemies;
+	private MobProjectileHandler projectileHandler;
 	
 	public MobHandler(TextureAtlas atlas, Resources resources) {
 		this.resources = resources;
@@ -37,6 +38,7 @@ public class MobHandler implements GameInterface {
 	
 	public void setEnemies(ArrayList<Enemy> enemies) {
 		this.enemies = enemies;
+		projectileHandler = new MobProjectileHandler(enemies);
 	}
 	
 	public void select(float x, float y, float width, float height) {
@@ -73,7 +75,7 @@ public class MobHandler implements GameInterface {
 	@Override
 	public void update(float delta) {
 		for (int i = 0; i < mobs.size(); i++) {
-			mobs.get(i).update(delta);
+			mobs.get(i).update(delta, enemies);
 			mobs.get(i).setTargetToClosest(enemies);
 			if (mobs.get(i).shouldRemove()) {
 				selectedMobs.remove(mobs.get(i));
@@ -81,6 +83,7 @@ public class MobHandler implements GameInterface {
 				mobs.remove(i);
 			}
 		}
+		projectileHandler.update(delta);
 	}
 
 	@Override
@@ -88,6 +91,7 @@ public class MobHandler implements GameInterface {
 		for (int i = 0; i < mobs.size(); i++) {
 			mobs.get(i).render(batch);
 		}
+		projectileHandler.render(batch);
 		
 		//Render selection icon
 		for (int i = 0; i < selectedMobs.size(); i++) {
