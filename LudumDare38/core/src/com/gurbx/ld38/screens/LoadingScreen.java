@@ -2,6 +2,7 @@ package com.gurbx.ld38.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.gurbx.ld38.Application;
 
 public class LoadingScreen extends GameScreen {
@@ -17,8 +18,7 @@ public class LoadingScreen extends GameScreen {
 	}
 
 	private void loadAssets() {
-		// TODO Auto-generated method stub
-		
+		app.assets.load("img/villagePack.atlas", TextureAtlas.class);
 	}
 	
 	private void update(float delta) {
