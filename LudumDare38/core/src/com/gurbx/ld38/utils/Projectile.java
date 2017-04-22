@@ -47,7 +47,7 @@ public class Projectile implements GameInterface {
 	}
 	
 	protected boolean hitsTarget(float eX, float eY) {
-		int hitRange = 5;
+		int hitRange = 10;
 		if (eX > x && eX < x+hitRange &&
 				eY > y && eY < y + hitRange) {
 			return true;

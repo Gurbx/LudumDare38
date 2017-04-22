@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.gurbx.ld38.house.House;
 import com.gurbx.ld38.utils.Constants;
+import com.gurbx.ld38.utils.FloatingText.TextType;
 import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.FriendlyProjectile;
 import com.gurbx.ld38.utils.GameInterface;
@@ -226,7 +227,8 @@ public class Mob implements Target {
 
 	@Override
 	public void damage(int damage) {
-		FloatingTextHandler.addText("" + damage, position.x - width/2, position.y - width/2 + 10, 50, 2.5f, Color.RED);
+//		FloatingTextHandler.addText("" + damage, position.x - width/2, position.y - width/2 + 10, 50, 2.5f, 
+//				Color.RED, TextType.BOUNCE);
 		this.health -= damage;
 		if (health <= 0) {
 			health = 0;

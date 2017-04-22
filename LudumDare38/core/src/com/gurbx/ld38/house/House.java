@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.GameInterface;
 import com.gurbx.ld38.utils.Target;
+import com.gurbx.ld38.utils.FloatingText.TextType;
 
 public class House implements Target {
 	protected TextureAtlas atlas;
@@ -149,7 +150,7 @@ public class House implements Target {
 
 	@Override
 	public void damage(int damage) {
-		FloatingTextHandler.addText("" + damage, this.x - width/2, this.y -width/2 + 10, 50, 2.5f, Color.RED);
+//		FloatingTextHandler.addText("" + damage, this.x - width/2, this.y -width/2 + 10, 50, 2.5f, Color.RED, TextType.BOUNCE);
 		this.health -= damage;
 		if (health <= 0) {
 			health = 0;

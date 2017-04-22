@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.gurbx.ld38.utils.FloatingText.TextType;
 
 public class FloatingTextHandler {
 	private static ArrayList<FloatingText> text;
@@ -35,8 +36,9 @@ public class FloatingTextHandler {
 		}
 	}
 	
-	public static void addText(String string, float x, float y, float velocity, float lifeTime, Color color) {
-		text.add(new FloatingText(string, x, y, velocity, lifeTime, color));
+	public static void addText(String string, float x, float y, float velocity, float lifeTime, Color color, 
+			TextType type) {
+		text.add(new FloatingText(string, x, y, velocity, lifeTime, color, type));
 	}
 
 }

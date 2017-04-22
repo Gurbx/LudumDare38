@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.utils.FloatingTextHandler;
+import com.gurbx.ld38.utils.FloatingText.TextType;
 
 public class ResinPump extends House {
 	private int amountGenerated = 5;
@@ -26,7 +27,7 @@ public class ResinPump extends House {
 		}
 		if (timer < 0) {
 			generateResin();
-			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y + 10, 20, 4.5f, Color.ORANGE);
+			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y + 10, 20, 4.5f, Color.ORANGE, TextType.FLOAT);
 			timer = cooldown;
 		}
 	}
