@@ -24,5 +24,17 @@ public class Resources {
 	public int getPollen() {
 		return pollen;
 	}
+	
+	public boolean removeResin(int amount) {
+		if (amount > resin) return false;
+		resin -= amount;
+		return true;
+	}
+	
+	public boolean removePollen(int amount) {
+		if (amount > pollen) return false;
+		pollen -= amount;
+		return true;
+	}
 
 }
