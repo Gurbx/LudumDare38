@@ -14,6 +14,7 @@ import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.ui.UI;
 import com.gurbx.ld38.utils.Constants;
 import com.gurbx.ld38.utils.FloatingTextHandler;
+import com.gurbx.ld38.utils.ParticleEffectHandler;
 import com.gurbx.ld38.waves.Enemy;
 import com.gurbx.ld38.waves.EnemyType;
 import com.gurbx.ld38.waves.WaveHandler;
@@ -25,6 +26,7 @@ public class PlayScreen extends GameScreen {
 	private MobHandler mobHandler;
 	private UI ui;
 	private FloatingTextHandler floatingTextHandler;
+	private ParticleEffectHandler particleHandler;
 	
 	private TextureRegion bgTile;
 	
@@ -50,6 +52,7 @@ public class PlayScreen extends GameScreen {
 		mobHandler.setEnemies(waves.getEnemies());
 		
 		bgTile = villageAtlas.findRegion("bgTile");
+		particleHandler = new ParticleEffectHandler(villageAtlas);
 		
 		InputMultiplexer multiPlex = new InputMultiplexer();
 		multiPlex.addProcessor(ui.getStage());
@@ -62,6 +65,7 @@ public class PlayScreen extends GameScreen {
 		mobHandler.update(delta);
 		houseHandler.update(delta);
 		waves.update(delta);
+		particleHandler.update(delta);
 		ui.update(delta);
 		floatingTextHandler.update(delta);
 	}
@@ -82,6 +86,7 @@ public class PlayScreen extends GameScreen {
 		houseHandler.render(app.batch);
 		waves.render(app.batch);
 		mobHandler.render(app.batch);
+		particleHandler.render(app.batch);
 		floatingTextHandler.render(app.batch, app.font);
 		app.batch.end();
 		
@@ -132,6 +137,7 @@ public class PlayScreen extends GameScreen {
 		floatingTextHandler.dispose();
 		ui.dispse();
 		waves.dispse();
+		particleHandler.dispse();
 		
 	}
 
