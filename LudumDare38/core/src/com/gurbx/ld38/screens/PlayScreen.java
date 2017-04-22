@@ -6,15 +6,15 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.gurbx.ld38.Application;
 import com.gurbx.ld38.house.HouseHandler;
+import com.gurbx.ld38.input.Input;
 import com.gurbx.ld38.mobs.Mob;
+import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.mobs.MobType;
-import com.gurbx.ld38.utils.Input;
 
 public class PlayScreen extends GameScreen {
 	private Input input;
-	private Mob mob;
-//	private House house;
 	private HouseHandler houseHandler;
+	private MobHandler mobHandler;
 
 	public PlayScreen(Application app) {
 		super(app);
@@ -24,8 +24,9 @@ public class PlayScreen extends GameScreen {
 	@Override
 	public void show() {
 		TextureAtlas villageAtlas = app.assets.get("img/villagePack.atlas", TextureAtlas.class);
-		mob = new Mob(new Vector2(100, 100), MobType.SOLIDER, villageAtlas);
-		this.input = new Input(mob);
+//		mob = new Mob(new Vector2(100, 100), MobType.SOLIDER, villageAtlas);
+		this.mobHandler = new MobHandler(villageAtlas);
+		this.input = new Input(mobHandler);
 		
 		houseHandler = new HouseHandler(villageAtlas);
 		
@@ -33,7 +34,8 @@ public class PlayScreen extends GameScreen {
 	}
 	
 	private void update(float delta) {
-		mob.update(delta);
+		input.update(delta);
+		mobHandler.update(delta);
 		houseHandler.update(delta);
 	}
 
@@ -44,10 +46,12 @@ public class PlayScreen extends GameScreen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		app.batch.begin();
 		houseHandler.render(app.batch);
-		mob.render(app.batch);
+		mobHandler.render(app.batch);
 		app.batch.end();
 		
 		houseHandler.renderBars(app.shapeRenderer);
+		mobHandler.renderBars(app.shapeRenderer);
+		input.renderSelection(app.shapeRenderer);
 		
 	}
 

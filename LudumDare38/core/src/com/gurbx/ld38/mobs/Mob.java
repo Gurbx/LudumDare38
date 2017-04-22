@@ -1,9 +1,11 @@
 package com.gurbx.ld38.mobs;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.gurbx.ld38.utils.GameInterface;
@@ -23,6 +25,7 @@ public class Mob implements GameInterface {
 	private boolean selected;
 	private boolean shouldRemove;
 	private int health;
+	private int maxHealth;
 	private float speed;
 	
 	public Mob(Vector2 position, MobType type, TextureAtlas atlas) {
@@ -32,6 +35,7 @@ public class Mob implements GameInterface {
 		this.shouldRemove = false;
 		this.hasMovementTarget = false;
 		this.health = type.getHealth();
+		this.maxHealth = health;
 		this.speed = type.getMovementSpeed();
 		this.elapsedTime = 0;
 		initAnimation(atlas, type);
@@ -82,6 +86,15 @@ public class Mob implements GameInterface {
 		batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), position.x, position.y, width/2, height/2, width, height, 1f, 1f, (float) Math.toDegrees(radians) + 90);
 		
 	}
+	
+	public void renderBars(ShapeRenderer shapeRenderer) {
+		if (health <= maxHealth) {
+			shapeRenderer.setColor(Color.GRAY);
+			shapeRenderer.rect(position.x, position.y + height + 3, width, 3);
+			shapeRenderer.setColor(Color.GREEN);
+			shapeRenderer.rect(position.x, position.y + height + 3, width * (float) health/maxHealth, 3);
+		}
+	}
 
 	@Override
 	public void dispse() {
@@ -104,5 +117,6 @@ public class Mob implements GameInterface {
 	public Vector2 getPosition() {
 		return position;
 	}
+
 
 }
