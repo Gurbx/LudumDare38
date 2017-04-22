@@ -32,9 +32,14 @@ public class HouseMenu {
         style1.imageUp = skin.getDrawable("houseButton1");
         style1.imageOver = skin.getDrawable("houseButtonOver1");
         style1.imageDown = skin.getDrawable("houseButtonPressed1");
+        
+        ImageButton.ImageButtonStyle style2 = new ImageButton.ImageButtonStyle();
+        style2.imageUp = skin.getDrawable("houseButton2");
+        style2.imageOver = skin.getDrawable("houseButtonOver2");
+        style2.imageDown = skin.getDrawable("houseButtonPressed2");
 
         houseButton[0] = new ImageButton(style1);
-        houseButton[1] = new ImageButton(style1);
+        houseButton[1] = new ImageButton(style2);
         
         
         //Standard

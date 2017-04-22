@@ -25,7 +25,7 @@ public class PollenPump extends House {
 		}
 		if (timer < 0) {
 			generatePollen();
-			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y, 20, 4.5f);
+			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y + 10, 20, 4.5f);
 			timer = cooldown;
 		}
 	}

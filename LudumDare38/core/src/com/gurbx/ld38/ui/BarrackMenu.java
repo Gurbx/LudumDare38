@@ -36,9 +36,9 @@ public class BarrackMenu {
 		float buttonY = 10;
         Skin skin = new Skin(atlas);
         ImageButton.ImageButtonStyle style1 = new ImageButton.ImageButtonStyle();
-        style1.imageUp = skin.getDrawable("houseButton1");
-        style1.imageOver = skin.getDrawable("houseButtonOver1");
-        style1.imageDown = skin.getDrawable("houseButtonPressed1");
+        style1.imageUp = skin.getDrawable("mobButton1");
+        style1.imageOver = skin.getDrawable("mobButton1");
+        style1.imageDown = skin.getDrawable("mobButtonPressed1");
 
         mobButton[0] = new ImageButton(style1);
         

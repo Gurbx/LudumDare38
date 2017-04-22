@@ -5,13 +5,17 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.gurbx.ld38.Application;
 import com.gurbx.ld38.house.HouseHandler;
 import com.gurbx.ld38.input.Input;
 import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.ui.UI;
+import com.gurbx.ld38.utils.Constants;
 import com.gurbx.ld38.utils.FloatingTextHandler;
+import com.gurbx.ld38.waves.Enemy;
+import com.gurbx.ld38.waves.EnemyType;
 
 public class PlayScreen extends GameScreen {
 	private Input input;
@@ -22,6 +26,8 @@ public class PlayScreen extends GameScreen {
 	private FloatingTextHandler floatingTextHandler;
 	
 	private TextureRegion bgTile;
+	
+	private Enemy enemy;
 
 	public PlayScreen(Application app) {
 		super(app);

@@ -24,93 +24,156 @@ houseButton1
   orig: 56, 56
   offset: 0, 0
   index: -1
-houseButtonOver1
+houseButton2
   rotate: false
   xy: 769, 69
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
-houseButtonPressed1
+houseButtonOver1
   rotate: false
   xy: 59, 1
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
+houseButtonOver2
+  rotate: false
+  xy: 827, 69
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+houseButtonPressed1
+  rotate: false
+  xy: 117, 1
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+houseButtonPressed2
+  rotate: false
+  xy: 117, 1
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+mobButtonPressed1
+  rotate: false
+  xy: 117, 1
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+mobButton1
+  rotate: false
+  xy: 885, 69
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
 houseBuild1
   rotate: false
-  xy: 827, 93
+  xy: 175, 25
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 houseDamaged1
   rotate: false
-  xy: 117, 25
+  xy: 943, 93
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 houseFinal1
   rotate: false
-  xy: 861, 93
+  xy: 209, 25
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 housePlaced1
   rotate: false
-  xy: 151, 25
+  xy: 977, 93
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 pollen
   rotate: false
-  xy: 895, 93
+  xy: 243, 25
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 resin
   rotate: false
-  xy: 185, 25
+  xy: 277, 25
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+bug1
+  rotate: false
+  xy: 1011, 109
+  size: 12, 16
+  orig: 12, 16
+  offset: 0, 0
+  index: -1
+bug2
+  rotate: false
+  xy: 1011, 91
+  size: 12, 16
+  orig: 12, 16
+  offset: 0, 0
+  index: -1
 houseBuild2
   rotate: false
-  xy: 827, 69
+  xy: 175, 1
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 houseDamaged2
   rotate: false
-  xy: 827, 69
+  xy: 175, 1
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 houseFinal2
   rotate: false
-  xy: 827, 69
+  xy: 175, 1
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 housePlaced2
   rotate: false
-  xy: 827, 69
+  xy: 175, 1
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
+bug3
+  rotate: false
+  xy: 311, 41
+  size: 12, 16
+  orig: 12, 16
+  offset: 0, 0
+  index: -1
+bug4
+  rotate: false
+  xy: 943, 75
+  size: 12, 16
+  orig: 12, 16
+  offset: 0, 0
+  index: -1
 mob
   rotate: false
-  xy: 117, 15
+  xy: 199, 15
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
