@@ -16,6 +16,7 @@ import com.gurbx.ld38.utils.Constants;
 import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.waves.Enemy;
 import com.gurbx.ld38.waves.EnemyType;
+import com.gurbx.ld38.waves.WaveHandler;
 
 public class PlayScreen extends GameScreen {
 	private Input input;
@@ -27,7 +28,7 @@ public class PlayScreen extends GameScreen {
 	
 	private TextureRegion bgTile;
 	
-	private Enemy enemy;
+	private WaveHandler waves;
 
 	public PlayScreen(Application app) {
 		super(app);
@@ -45,6 +46,8 @@ public class PlayScreen extends GameScreen {
 		this.ui = new UI(app, villageAtlas, houseHandler, resources, mobHandler);
 		floatingTextHandler = new FloatingTextHandler();
 		
+		waves = new WaveHandler(villageAtlas, houseHandler, mobHandler);
+		mobHandler.setEnemies(waves.getEnemies());
 		
 		bgTile = villageAtlas.findRegion("bgTile");
 		
@@ -58,6 +61,7 @@ public class PlayScreen extends GameScreen {
 		input.update(delta);
 		mobHandler.update(delta);
 		houseHandler.update(delta);
+		waves.update(delta);
 		ui.update(delta);
 		floatingTextHandler.update(delta);
 	}
@@ -76,6 +80,7 @@ public class PlayScreen extends GameScreen {
 			
 		}
 		houseHandler.render(app.batch);
+		waves.render(app.batch);
 		mobHandler.render(app.batch);
 		floatingTextHandler.render(app.batch, app.font);
 		app.batch.end();
@@ -122,6 +127,7 @@ public class PlayScreen extends GameScreen {
 		mobHandler.dispse();
 		floatingTextHandler.dispose();
 		ui.dispse();
+		waves.dispse();
 		
 	}
 

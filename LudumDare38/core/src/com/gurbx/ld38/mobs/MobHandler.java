@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.utils.GameInterface;
+import com.gurbx.ld38.waves.Enemy;
 
 public class MobHandler implements GameInterface {
 	private ArrayList<Mob> mobs;
@@ -20,14 +21,22 @@ public class MobHandler implements GameInterface {
 	private Sprite selectionSprite;
 	private Random random;
 	private Resources resources;
+	private ArrayList<Enemy> enemies;
 	
 	public MobHandler(TextureAtlas atlas, Resources resources) {
 		this.resources = resources;
 		this.atlas = atlas;
 		this.selectionSprite = new Sprite(new TextureRegion(atlas.findRegion("selection")));
 		mobs = new ArrayList<Mob>();
+		for (int i = 0; i < 10; i++) {
+			mobs.add(new Mob(new Vector2(500, 400), MobType.SOLIDER, atlas));
+		}
 		selectedMobs = new ArrayList<Mob>();
 		random = new Random();
+	}
+	
+	public void setEnemies(ArrayList<Enemy> enemies) {
+		this.enemies = enemies;
 	}
 	
 	public void select(float x, float y, float width, float height) {
@@ -65,7 +74,9 @@ public class MobHandler implements GameInterface {
 	public void update(float delta) {
 		for (int i = 0; i < mobs.size(); i++) {
 			mobs.get(i).update(delta);
+			mobs.get(i).setTargetToClosest(enemies);
 			if (mobs.get(i).shouldRemove()) {
+				selectedMobs.remove(mobs.get(i));
 				mobs.get(i).dispse();
 				mobs.remove(i);
 			}
@@ -127,6 +138,10 @@ public class MobHandler implements GameInterface {
 	public void buyMob(MobType type) {
 		resources.removePollen(type.getCost());
 		
+	}
+
+	public ArrayList<Mob> getMobs() {
+		return mobs;
 	}
 
 

@@ -1,5 +1,6 @@
 package com.gurbx.ld38.house;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.utils.FloatingText;
@@ -25,7 +26,7 @@ public class PollenPump extends House {
 		}
 		if (timer < 0) {
 			generatePollen();
-			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y + 10, 20, 4.5f);
+			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y + 10, 20, 4.5f, Color.YELLOW);
 			timer = cooldown;
 		}
 	}

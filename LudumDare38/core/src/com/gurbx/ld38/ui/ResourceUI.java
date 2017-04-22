@@ -1,5 +1,6 @@
 package com.gurbx.ld38.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -37,6 +38,7 @@ public class ResourceUI implements GameInterface {
 		resin.draw(batch);
 		pollen.draw(batch);
 		
+		font.setColor(Color.WHITE);
 		font.draw(batch, "Resin: " + resources.getResin(), x, rY);
 		font.draw(batch, "Pollen: " + resources.getPollen(), x, pY);
 		

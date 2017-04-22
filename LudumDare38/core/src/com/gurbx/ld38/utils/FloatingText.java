@@ -1,5 +1,6 @@
 package com.gurbx.ld38.utils;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -10,8 +11,10 @@ public class FloatingText {
 	private float velocity;
 	private boolean shouldRemove;
 	private String text;
+	private Color color;
 	
-	public FloatingText(String text, float x, float y, float velocity, float lifeTime) {
+	public FloatingText(String text, float x, float y, float velocity, float lifeTime, Color color) {
+		this.color = color;
 		this.text = text;
 		this.x = x;
 		this.y = y;
@@ -30,6 +33,7 @@ public class FloatingText {
 	}
 
 	public void render(SpriteBatch batch, BitmapFont font) {
+		font.setColor(color);
 		font.draw(batch, text, x, y);
 		
 	}

@@ -35,6 +35,15 @@ public class HouseHandler implements GameInterface {
 	public void update(float delta) {
 		for (int i = 0; i < houses.size(); i++) {
 			houses.get(i).update(delta, mouseX, mouseY);
+			if (houses.get(i).shouldRemove()) {
+				if (selectedHouse != null) {
+					if (selectedHouse.equals(houses.get(i))) {
+						deselect();
+					}
+				}
+				houses.get(i).dispse();
+				houses.remove(i);
+			}
 		}
 		if (placedHouse != null) placedHouse.update(delta, mouseX, mouseY);
 	}
@@ -128,6 +137,10 @@ public class HouseHandler implements GameInterface {
 	
 	public House getSelectedHouse() {
 		return selectedHouse;
+	}
+
+	public ArrayList<House> getHouses() {
+		return houses;
 	}
 	
 

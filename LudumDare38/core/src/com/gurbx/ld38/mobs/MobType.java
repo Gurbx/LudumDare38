@@ -1,7 +1,7 @@
 package com.gurbx.ld38.mobs;
 
 public enum MobType {
-	SOLIDER("Mob", 10, 1, 1f, 25f, false, 10, "mob", 10, 5f, 1,1,1 );
+	SOLIDER("Mob", 10, 1, 1f, 25f, false, 80, "mob", 10, 5f, 1,1,1 );
 	
 	private String name;
 	private int health;

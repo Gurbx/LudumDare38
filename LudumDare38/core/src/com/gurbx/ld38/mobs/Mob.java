@@ -1,5 +1,7 @@
 package com.gurbx.ld38.mobs;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -9,10 +11,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.gurbx.ld38.house.House;
 import com.gurbx.ld38.utils.Constants;
+import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.GameInterface;
+import com.gurbx.ld38.utils.Target;
+import com.gurbx.ld38.waves.Enemy;
 
-public class Mob implements GameInterface {
+public class Mob implements GameInterface, Target {
 	private Vector2 position;
 	private MobType type;
 	private Animation move, stand, attack;
@@ -29,6 +35,7 @@ public class Mob implements GameInterface {
 	private int health;
 	private int maxHealth;
 	private float speed;
+	private Enemy target;
 	
 	public Mob(Vector2 position, MobType type, TextureAtlas atlas) {
 		this.position = position;
@@ -148,12 +155,45 @@ public class Mob implements GameInterface {
 		}
 	}
 	
+	public void setTargetToClosest(ArrayList<Enemy> enemies) {
+		if (enemies.isEmpty()) return;
+		int index = 0;
+		float mobDistace = 999999;
+		for (int i = 0; i < enemies.size(); i++) {
+			float x2 = enemies.get(i).getPosition().x;
+			float y2 = enemies.get(i).getPosition().y;
+			
+			float newDistance = (float) Math.sqrt((position.x-x2)*(position.x-x2) + (position.y-y2)*(position.y-y2));
+			
+			if (newDistance < mobDistace) {
+				index = i;
+				mobDistace = newDistance;
+			}
+		}
+		if (mobDistace <= type.getRange()) {
+			target = enemies.get(index);
+		} else {
+			target = null;
+		}
+	}
+	
 	public void setSelected(boolean b) {
 		selected = b;
 	}
 	
 	public Vector2 getPosition() {
 		return position;
+	}
+
+	@Override
+	public void damage(int damage) {
+		FloatingTextHandler.addText("" + damage, position.x - width/2, position.y - width/2 + 10, 50, 2.5f, Color.RED);
+		this.health -= damage;
+		if (health <= 0) {
+			health = 0;
+			shouldRemove = true;
+		}
+		
 	}
 
 

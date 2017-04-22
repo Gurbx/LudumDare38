@@ -6,9 +6,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.GameInterface;
+import com.gurbx.ld38.utils.Target;
 
-public class House {
+public class House implements Target {
 	protected TextureAtlas atlas;
 	private TextureRegion placeTex, finalTex, buildTex, damagedTex;
 	private Sprite placedSprite, buildSprite, finalSprite, damagedSprite, currentSprite;
@@ -16,11 +18,13 @@ public class House {
 	protected float width;
 	protected float height;
 	protected HouseType type;
+	private int health;
+	private boolean shouldRemove;
 	
 	protected boolean placed;
 	protected float progress;
 	private float buildTime;
-	protected float barWidth, barHeight = 6;
+	protected float barWidth, barHeight = 4;
 	protected boolean buildFinnished;
 	
 	public House(float x, float y, HouseType type, TextureAtlas atlas) {
@@ -34,6 +38,8 @@ public class House {
 		this.barWidth = finalTex.getRegionWidth();
 		this.buildFinnished = false;
 		this.placed = false;
+		shouldRemove = false;
+		health = type.getHealth();
 	}
 
 	private void initTextures(TextureAtlas atlas) {
@@ -76,7 +82,13 @@ public class House {
 		//Render progress bar
 		shapeRenderer.setColor(Color.GREEN);
 		if (progress < buildTime) {
-			shapeRenderer.rect(x - width/2, y-height/2-10, barWidth * progress/buildTime, barHeight);
+			shapeRenderer.rect(x - width/2, y-height/2-5, barWidth * progress/buildTime, barHeight);
+		}
+		if (health < type.getHealth()) {
+			shapeRenderer.setColor(Color.GRAY);
+			shapeRenderer.rect(x - width/2, y+height/2+5, barWidth, barHeight);
+			shapeRenderer.setColor(Color.GREEN);
+			shapeRenderer.rect(x - width/2, y+height/2+5, barWidth * health/type.getHealth(), barHeight);
 		}
 		
 	}
@@ -133,6 +145,27 @@ public class House {
 	
 	public float getY() {
 		return this.y;
+	}
+
+	@Override
+	public void damage(int damage) {
+		FloatingTextHandler.addText("" + damage, this.x - width/2, this.y -width/2 + 10, 50, 2.5f, Color.RED);
+		this.health -= damage;
+		if (health <= 0) {
+			health = 0;
+			shouldRemove = true;
+		}
+		
+	}
+
+	public boolean shouldRemove() {
+		return shouldRemove;
+	}
+
+	@Override
+	public boolean isDead() {
+		if (health <= 0) return true;
+		return false;
 	}
 
 }
