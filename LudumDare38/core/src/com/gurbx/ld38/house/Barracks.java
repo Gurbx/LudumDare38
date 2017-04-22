@@ -61,8 +61,9 @@ public class Barracks extends House {
 		}
 	}
 
-	public boolean canSpawnMob() {
+	public boolean canSpawnMob(MobType type) {
 		if (placed == true && buildFinnished) {
+			if (spawningMob && this.type != type) return false;
 			return true;
 		} 
 		return false;
@@ -70,6 +71,10 @@ public class Barracks extends House {
 	
 	public int getMobQueueSize() {
 		return mobQueue.size();
+	}
+
+	public MobType getMobQueueType() {
+		return type;
 	}
 
 }

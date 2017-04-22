@@ -63,7 +63,7 @@ public class Mob implements GameInterface, Target {
 	private void initAnimation(TextureAtlas atlas, MobType type) {
 		   TextureRegion[] moveFrames = new TextureRegion[type.getMoveFrames()];
 	       for (int i = 0; i < moveFrames.length; i++) {
-	    	   moveFrames[i] = atlas.findRegion("mob");
+	    	   moveFrames[i] = atlas.findRegion(type.getPath());
 	        }
 		   this.width = moveFrames[0].getRegionWidth();
 		   this.height =moveFrames[0].getRegionHeight();

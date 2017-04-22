@@ -101,18 +101,11 @@ housePlaced1
   orig: 32, 32
   offset: 0, 0
   index: -1
-pollen
+housePlaced3
   rotate: false
-  xy: 243, 25
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-resin
-  rotate: false
-  xy: 277, 25
-  size: 32, 32
-  orig: 32, 32
+  xy: 243, 32
+  size: 26, 25
+  orig: 26, 25
   offset: 0, 0
   index: -1
 bug1
@@ -157,23 +150,65 @@ housePlaced2
   orig: 22, 22
   offset: 0, 0
   index: -1
+houseBuild3
+  rotate: false
+  xy: 271, 39
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+houseDamaged3
+  rotate: false
+  xy: 943, 73
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+houseFinal3
+  rotate: false
+  xy: 943, 73
+  size: 18, 18
+  orig: 18, 18
+  offset: 0, 0
+  index: -1
+pollen
+  rotate: false
+  xy: 199, 7
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+resin
+  rotate: false
+  xy: 291, 41
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 bug3
   rotate: false
-  xy: 311, 41
+  xy: 963, 75
   size: 12, 16
   orig: 12, 16
   offset: 0, 0
   index: -1
 bug4
   rotate: false
-  xy: 943, 75
+  xy: 217, 7
   size: 12, 16
   orig: 12, 16
   offset: 0, 0
   index: -1
+mobArcher
+  rotate: false
+  xy: 309, 47
+  size: 10, 10
+  orig: 10, 10
+  offset: 0, 0
+  index: -1
 mob
   rotate: false
-  xy: 199, 15
+  xy: 977, 83
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -183,5 +218,12 @@ selection
   xy: 769, 63
   size: 4, 4
   orig: 4, 4
+  offset: 0, 0
+  index: -1
+spear
+  rotate: false
+  xy: 243, 26
+  size: 1, 4
+  orig: 1, 4
   offset: 0, 0
   index: -1

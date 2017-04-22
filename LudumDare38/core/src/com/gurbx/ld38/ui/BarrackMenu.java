@@ -37,7 +37,7 @@ public class BarrackMenu {
 	}
 	
 	private void initButtons(Stage stage) {
-		mobButton = new ImageButton[1];
+		mobButton = new ImageButton[2];
 		buttonX = 56; 
 		buttonY = 10;
         Skin skin = new Skin(atlas);
@@ -45,19 +45,39 @@ public class BarrackMenu {
         style1.imageUp = skin.getDrawable("mobButton1");
         style1.imageOver = skin.getDrawable("mobButton1");
         style1.imageDown = skin.getDrawable("mobButtonPressed1");
-
         mobButton[0] = new ImageButton(style1);
         
+        ImageButton.ImageButtonStyle style2 = new ImageButton.ImageButtonStyle();
+        style2.imageUp = skin.getDrawable("mobButton1");
+        style2.imageOver = skin.getDrawable("mobButton1");
+        style2.imageDown = skin.getDrawable("mobButtonPressed1");
+        mobButton[1] = new ImageButton(style2);
         
-        //Standard
+        
+        //Solider
         mobButton[0].addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
             	if (mobHandler.canBuyMob(MobType.SOLIDER) == false) return;
-            	if (barracks.canSpawnMob() == false) return;
+            	if (barracks.canSpawnMob(MobType.SOLIDER) == false) return;
             	mobHandler.buyMob(MobType.SOLIDER);
             	barracks.spawnMob(MobType.SOLIDER);
+            	
+//            	houseHandler.placeNewHouse(HouseType.BASIC);
+//            	mobHandler.addMob(new Mob(new Vector2(spawmX,spawnY), MobType.SOLIDER, atlas));
+            };
+        });
+        
+        //Archer
+        mobButton[1].addListener( new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+            	if (!active) return;
+            	if (mobHandler.canBuyMob(MobType.ARCHER) == false) return;
+            	if (barracks.canSpawnMob(MobType.ARCHER) == false) return;
+            	mobHandler.buyMob(MobType.ARCHER);
+            	barracks.spawnMob(MobType.ARCHER);
             	
 //            	houseHandler.placeNewHouse(HouseType.BASIC);
 //            	mobHandler.addMob(new Mob(new Vector2(spawmX,spawnY), MobType.SOLIDER, atlas));
@@ -82,7 +102,19 @@ public class BarrackMenu {
 	public void render(SpriteBatch batch, BitmapFont font) {
 		if (barracks != null) {
 			font.setColor(Color.WHITE);
-			font.draw(batch, "" + barracks.getMobQueueSize(), buttonX + 45 , buttonY+55);
+			if (barracks.getMobQueueType() != null) {
+				switch (barracks.getMobQueueType()) {
+				case SOLIDER:
+					font.draw(batch, "" + barracks.getMobQueueSize(), buttonX + 45 , buttonY+55);
+					break;
+				case ARCHER:
+					font.draw(batch, "" + barracks.getMobQueueSize(), buttonX + 45 + modifier , buttonY+55);
+					break;
+
+				default:
+					break;
+				}
+			}
 		}
 	}
 
