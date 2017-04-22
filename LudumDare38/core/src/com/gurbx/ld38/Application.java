@@ -6,6 +6,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gurbx.ld38.screens.LoadingScreen;
@@ -17,6 +18,8 @@ public class Application extends Game {
 	public OrthographicCamera camera, uiCamera;
 	public Viewport viewport, uiViewport;
 	public AssetManager assets;
+	
+	public ShapeRenderer shapeRenderer;
 	
 	public LoadingScreen loadingScreen;
 	public PlayScreen playScreen;
@@ -40,6 +43,8 @@ public class Application extends Game {
 		uiCamera.position.set(Constants.UI_VIRTUAL_WIDTH/2, Constants.UI_VIRTUAL_HEIGHT/2, 0);
 		camera.update();
 		uiCamera.update();
+		
+		shapeRenderer = new ShapeRenderer();
 	}
 	
 	private void initScreens() {
@@ -66,5 +71,6 @@ public class Application extends Game {
 		super.dispose();
 		batch.dispose();
 		assets.dispose();
+		shapeRenderer.dispose();
 	}
 }

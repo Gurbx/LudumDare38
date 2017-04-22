@@ -10,7 +10,7 @@ import com.gurbx.ld38.utils.GameInterface;
 
 public class Mob implements GameInterface {
 	private Vector2 position;
-	private MobEnum type;
+	private MobType type;
 	private Animation move, stand, attack;
 	private Animation currentAnimation;
 	private float targetX, targetY;
@@ -25,7 +25,7 @@ public class Mob implements GameInterface {
 	private int health;
 	private float speed;
 	
-	public Mob(Vector2 position, MobEnum type, TextureAtlas atlas) {
+	public Mob(Vector2 position, MobType type, TextureAtlas atlas) {
 		this.position = position;
 		this.type = type;
 		this.selected = false;
@@ -37,7 +37,7 @@ public class Mob implements GameInterface {
 		initAnimation(atlas, type);
 	}
 	
-	private void initAnimation(TextureAtlas atlas, MobEnum type) {
+	private void initAnimation(TextureAtlas atlas, MobType type) {
 		   TextureRegion[] moveFrames = new TextureRegion[type.getMoveFrames()];
 	       for (int i = 0; i < moveFrames.length; i++) {
 	    	   moveFrames[i] = atlas.findRegion("mob");
@@ -79,7 +79,6 @@ public class Mob implements GameInterface {
 
 	@Override
 	public void render(SpriteBatch batch) {
-//		batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), position.x, position.y);
 		batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), position.x, position.y, width/2, height/2, width, height, 1f, 1f, (float) Math.toDegrees(radians) + 90);
 		
 	}
@@ -100,6 +99,10 @@ public class Mob implements GameInterface {
 		} else {
 			return false;
 		}
+	}
+	
+	public Vector2 getPosition() {
+		return position;
 	}
 
 }

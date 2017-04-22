@@ -3,9 +3,23 @@ villagePack.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-house
+houseBuild
   rotate: false
   xy: 1, 19
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+houseDamaged
+  rotate: false
+  xy: 67, 19
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+houseFinal
+  rotate: false
+  xy: 133, 19
   size: 64, 64
   orig: 64, 64
   offset: 0, 0

@@ -1,6 +1,6 @@
 package com.gurbx.ld38.mobs;
 
-public enum MobEnum {
+public enum MobType {
 	SOLIDER("Mob", 10, 1, 1f, 100f, false, 10, "mob", 1,1,1 );
 	
 	private String name;
@@ -17,7 +17,7 @@ public enum MobEnum {
 	private int attackFrames;
 	
 	
-	private MobEnum(String name, int health, int damage, float attackSpeed, float movementSpeed, boolean ranged,
+	private MobType(String name, int health, int damage, float attackSpeed, float movementSpeed, boolean ranged,
 			int range, String path,
 			int moveF, int standF, int attackF) {
 		this.name = name;
