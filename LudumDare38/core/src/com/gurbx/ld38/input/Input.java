@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.gurbx.ld38.house.HouseHandler;
 import com.gurbx.ld38.mobs.Mob;
 import com.gurbx.ld38.mobs.MobHandler;
 
@@ -17,13 +18,15 @@ public class Input implements InputProcessor {
 	private boolean selecting;
 	
 	private MobHandler mobHandler;
+	private HouseHandler houseHandler;
 	private Selection selection;
 	
 	private float selectionX, selectionY;
 	private float selectionWidth, selectionHeight;
 	
-	public Input(MobHandler mobHandler) {
+	public Input(MobHandler mobHandler, HouseHandler houseHandler) {
 		this.mobHandler = mobHandler;
+		this.houseHandler = houseHandler;
 		this.selecting = false;
 		this.lastTouch = new Vector2();
 		this.touchUp = new Vector2();
@@ -51,6 +54,7 @@ public class Input implements InputProcessor {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		lastTouch.set(screenX, Gdx.graphics.getHeight()- screenY);
+		if (button == 0) mobHandler.deselect();
 
 //		mob.moveTo(screenX, Gdx.graphics.getHeight()  - screenY);
 //		System.out.println("x:" + screenX + " y:" + screenY );
@@ -62,6 +66,7 @@ public class Input implements InputProcessor {
 		touchUp.set(screenX, Gdx.graphics.getHeight()- screenY);
 		
 		if (button == 0) {
+			houseHandler.placeCurrentHouse();
 			mobHandler.deselect();
 			if (selecting) {
 				mobHandler.select(selectionX, selectionY, selectionWidth, selectionHeight);
@@ -104,6 +109,9 @@ public class Input implements InputProcessor {
 	}
 	
 	public void update(float delta) {
+		houseHandler.setMouseX(mousePos.x);
+		houseHandler.setMouseY(mousePos.y);
+		
 		if (selecting) {
 			selectionX = lastTouch.x;
 			selectionY = lastTouch.y;

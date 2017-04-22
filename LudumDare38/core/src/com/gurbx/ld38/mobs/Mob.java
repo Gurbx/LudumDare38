@@ -138,9 +138,10 @@ public class Mob implements GameInterface {
 		}
 	}
 	
-	public boolean isWithinRegion(float x, float y, float width, float height) {
-		if (position.x >= x && position.x <= position.x + width &&
-				position.y <= y && position.y >= y + height) {
+	public boolean isWithinRegion(float x, float y, float x2, float y2) {
+
+		if (position.x >= x && position.x <= x2 &&
+				position.y >= y && position.y <= y2) {
 			return true;
 		} else {
 			return false;

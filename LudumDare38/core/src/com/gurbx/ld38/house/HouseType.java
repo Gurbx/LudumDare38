@@ -1,7 +1,7 @@
 package com.gurbx.ld38.house;
 
 public enum HouseType {
-	BASIC("basic", 5f, 20, 0, 0, "house" );
+	BASIC("basic", 5f, 20, 0, 0, "1" );
 	
 	private String name;
 	private float buildTime;

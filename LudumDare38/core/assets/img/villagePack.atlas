@@ -3,37 +3,72 @@ villagePack.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-houseBuild
+uiBar
   rotate: false
-  xy: 1, 19
+  xy: 1, 59
+  size: 700, 66
+  orig: 700, 66
+  offset: 0, 0
+  index: -1
+houseBuild1
+  rotate: false
+  xy: 703, 61
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-houseDamaged
+houseDamaged1
   rotate: false
-  xy: 67, 19
+  xy: 769, 61
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
-houseFinal
+houseFinal1
   rotate: false
-  xy: 133, 19
+  xy: 835, 61
   size: 64, 64
   orig: 64, 64
+  offset: 0, 0
+  index: -1
+housePlaced1
+  rotate: false
+  xy: 901, 61
+  size: 64, 64
+  orig: 64, 64
+  offset: 0, 0
+  index: -1
+houseButton1
+  rotate: false
+  xy: 967, 69
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+houseButtonOver1
+  rotate: false
+  xy: 967, 11
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+houseButtonPressed1
+  rotate: false
+  xy: 1, 1
+  size: 56, 56
+  orig: 56, 56
   offset: 0, 0
   index: -1
 mob
   rotate: false
-  xy: 1, 1
+  xy: 59, 41
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 selection
   rotate: false
-  xy: 199, 79
+  xy: 59, 35
   size: 4, 4
   orig: 4, 4
   offset: 0, 0

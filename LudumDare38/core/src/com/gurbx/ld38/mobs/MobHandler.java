@@ -32,8 +32,23 @@ public class MobHandler implements GameInterface {
 	}
 	
 	public void select(float x, float y, float width, float height) {
+		float x2 = x + width;
+		float y2 = y + height;
+		
+		if (x2 < x) {
+			float tempX = x2;
+			x2 = x;
+			x = tempX;
+		}
+		
+		if (y2 < y) {
+			float tempY = y2;
+			y2 = y;
+			y = tempY;
+		}
+		
 		for (int i = 0; i < mobs.size(); i++) {
-			if (mobs.get(i).isWithinRegion(x, y, width, height)) {
+			if (mobs.get(i).isWithinRegion(x, y, x2, y2)) {
 				mobs.get(i).setSelected(true);
 				selectedMobs.add(mobs.get(i));
 			}
