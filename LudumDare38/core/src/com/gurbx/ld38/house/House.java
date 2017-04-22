@@ -56,7 +56,6 @@ public class House {
 	}
 
 	public void update(float delta, float x, float y) {
-		
 		if (placed) {
 			progress += delta;	
 		} else {

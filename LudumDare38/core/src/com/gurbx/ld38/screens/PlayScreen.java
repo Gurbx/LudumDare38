@@ -27,7 +27,7 @@ public class PlayScreen extends GameScreen {
 		TextureAtlas villageAtlas = app.assets.get("img/villagePack.atlas", TextureAtlas.class);
 		resources = new Resources(100, 50);
 //		mob = new Mob(new Vector2(100, 100), MobType.SOLIDER, villageAtlas);
-		this.houseHandler = new HouseHandler(villageAtlas);
+		this.houseHandler = new HouseHandler(villageAtlas, resources);
 		this.mobHandler = new MobHandler(villageAtlas);
 		this.input = new Input(mobHandler, houseHandler);
 		

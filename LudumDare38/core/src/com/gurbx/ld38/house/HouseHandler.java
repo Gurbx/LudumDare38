@@ -7,15 +7,18 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.gurbx.ld38.Application;
+import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.utils.GameInterface;
 
 public class HouseHandler implements GameInterface {
 	private TextureAtlas atlas;
 	private ArrayList<House> houses;
 	private House placedHouse;
+	private Resources resources;
 	private float mouseX, mouseY;
 	
-	public HouseHandler(TextureAtlas atlas) {
+	public HouseHandler(TextureAtlas atlas, Resources resources) {
+		this.resources = resources;
 		this.atlas = atlas;
 		houses = new ArrayList<House>();
 //		houses.add(new House(205, 400, HouseType.BASIC, atlas));
@@ -63,7 +66,8 @@ public class HouseHandler implements GameInterface {
 		this.mouseY = y;
 	}
 	
-	public boolean canPlaceHouse() {
+	public boolean canPlaceHouse(HouseType type) {
+		if (resources.getResin() < type.getCost()) return false; 
 		if (placedHouse == null) {
 			return true;
 		} else {
@@ -82,6 +86,7 @@ public class HouseHandler implements GameInterface {
 		if (placedHouse != null) return;
 		switch (type) {
 		case BASIC:
+			resources.removeResin(type.getCost());
 			placedHouse = new House(mouseX, mouseY, type, atlas);
 			break;
 

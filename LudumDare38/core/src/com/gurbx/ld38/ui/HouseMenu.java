@@ -37,7 +37,7 @@ public class HouseMenu {
         houseButton[0].addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	if (houseHandler.canPlaceHouse() == false) return;
+            	if (houseHandler.canPlaceHouse(HouseType.BASIC) == false) return;
             	houseHandler.placeNewHouse(HouseType.BASIC);
             };
         });
