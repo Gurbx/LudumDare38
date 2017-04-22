@@ -2,12 +2,14 @@ package com.gurbx.ld38.mobs;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.gurbx.ld38.utils.Constants;
 import com.gurbx.ld38.utils.GameInterface;
 
 public class Mob implements GameInterface {
@@ -57,6 +59,11 @@ public class Mob implements GameInterface {
 		this.targetX = x;
 		this.targetY = y;
 		
+		if (targetX < 10) targetX = 10;
+		if (targetX > Constants.VIRTUAL_WIDTH -10) targetX = Constants.VIRTUAL_WIDTH-10;
+		if (targetY < 10) targetY = 10;
+		if (targetY > Constants.VIRTUAL_HEIGHT-10) targetY = Constants.VIRTUAL_HEIGHT-10;
+		
 		radians = (float) Math.atan2(targetY - position.y, targetX - position.x);
 		
 		dx = MathUtils.cos(radians) * speed;
@@ -83,16 +90,33 @@ public class Mob implements GameInterface {
 
 	@Override
 	public void render(SpriteBatch batch) {
-		batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), position.x, position.y, width/2, height/2, width, height, 1f, 1f, (float) Math.toDegrees(radians) + 90);
+		batch.draw(currentAnimation.getKeyFrame(elapsedTime, true), position.x - width*0.5f, position.y-height*0.5f, width/2, height/2, width, height, 1f, 1f, (float) Math.toDegrees(radians) + 90);
+		
+	}
+	
+	public void renderSelection(SpriteBatch batch, Sprite selectionSprite) {
+		int modifier = 2;
+		selectionSprite.setRotation(0);
+		selectionSprite.setPosition(position.x - (width*0.5f + modifier), position.y + (height*0.5f + modifier));
+		selectionSprite.draw(batch);
+		selectionSprite.setRotation(270);
+		selectionSprite.setPosition(position.x + (width*0.5f + modifier), position.y + (height*0.5f + modifier));
+		selectionSprite.draw(batch);
+		selectionSprite.setRotation(180);
+		selectionSprite.setPosition(position.x + (width*0.5f + modifier), position.y - (height*0.5f + modifier));
+		selectionSprite.draw(batch);
+		selectionSprite.setRotation(90);
+		selectionSprite.setPosition(position.x - (width*0.5f + modifier), position.y - (height*0.5f + modifier));
+		selectionSprite.draw(batch);
 		
 	}
 	
 	public void renderBars(ShapeRenderer shapeRenderer) {
-		if (health <= maxHealth) {
+		if (health < maxHealth) {
 			shapeRenderer.setColor(Color.GRAY);
-			shapeRenderer.rect(position.x, position.y + height + 3, width, 3);
+			shapeRenderer.rect(position.x - width*0.5f, position.y - height*0.5f + height + 3, width, 3);
 			shapeRenderer.setColor(Color.GREEN);
-			shapeRenderer.rect(position.x, position.y + height + 3, width * (float) health/maxHealth, 3);
+			shapeRenderer.rect(position.x - width * 0.5f, position.y - height * 0.5f + height + 3, width * (float) health/maxHealth, 3);
 		}
 	}
 
@@ -114,9 +138,23 @@ public class Mob implements GameInterface {
 		}
 	}
 	
+	public boolean isWithinRegion(float x, float y, float width, float height) {
+		if (position.x >= x && position.x <= position.x + width &&
+				position.y <= y && position.y >= y + height) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void setSelected(boolean b) {
+		selected = b;
+	}
+	
 	public Vector2 getPosition() {
 		return position;
 	}
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.gurbx.ld38.input;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -59,11 +60,18 @@ public class Input implements InputProcessor {
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		touchUp.set(screenX, Gdx.graphics.getHeight()- screenY);
-		// TODO Auto-generated method stub
-		if (selecting) {
-			selection = new Selection(selectionX, selectionY, selectionWidth, selectionHeight, mobHandler.getMobs());
+		
+		if (button == 0) {
+			mobHandler.deselect();
+			if (selecting) {
+				mobHandler.select(selectionX, selectionY, selectionWidth, selectionHeight);
+			}
 		}
 		selecting = false;
+//		Gdx.input.isButtonPressed(B)
+		if (button == 1) {
+			mobHandler.moveSelectedMobsToPoint(touchUp.x, touchUp.y);
+		}
 		
 		return false;
 	}
