@@ -10,6 +10,7 @@ import com.gurbx.ld38.input.Input;
 import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.ui.UI;
+import com.gurbx.ld38.utils.FloatingTextHandler;
 
 public class PlayScreen extends GameScreen {
 	private Input input;
@@ -17,6 +18,7 @@ public class PlayScreen extends GameScreen {
 	private HouseHandler houseHandler;
 	private MobHandler mobHandler;
 	private UI ui;
+	private FloatingTextHandler floatingTextHandler;
 
 	public PlayScreen(Application app) {
 		super(app);
@@ -31,7 +33,8 @@ public class PlayScreen extends GameScreen {
 		this.mobHandler = new MobHandler(villageAtlas);
 		this.input = new Input(mobHandler, houseHandler);
 		
-		this.ui = new UI(app, villageAtlas, houseHandler, resources);
+		this.ui = new UI(app, villageAtlas, houseHandler, resources, mobHandler);
+		floatingTextHandler = new FloatingTextHandler();
 		
 		InputMultiplexer multiPlex = new InputMultiplexer();
 		multiPlex.addProcessor(ui.getStage());
@@ -44,6 +47,7 @@ public class PlayScreen extends GameScreen {
 		mobHandler.update(delta);
 		houseHandler.update(delta);
 		ui.update(delta);
+		floatingTextHandler.update(delta);
 	}
 
 	@Override
@@ -54,6 +58,7 @@ public class PlayScreen extends GameScreen {
 		app.batch.begin();
 		houseHandler.render(app.batch);
 		mobHandler.render(app.batch);
+		floatingTextHandler.render(app.batch, app.font);
 		app.batch.end();
 		
 		houseHandler.renderBars(app.shapeRenderer);
@@ -96,6 +101,7 @@ public class PlayScreen extends GameScreen {
 	public void dispose() {
 		houseHandler.dispse();
 		mobHandler.dispse();
+		floatingTextHandler.dispose();
 		ui.dispse();
 		
 	}

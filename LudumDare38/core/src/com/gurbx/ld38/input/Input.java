@@ -54,7 +54,13 @@ public class Input implements InputProcessor {
 	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		lastTouch.set(screenX, Gdx.graphics.getHeight()- screenY);
-		if (button == 0) mobHandler.deselect();
+		if (button == 0) {
+			mobHandler.deselect();
+			houseHandler.select(lastTouch.x, lastTouch.y);
+		}
+		if (button == 1) {
+			houseHandler.deselect();
+		}
 
 //		mob.moveTo(screenX, Gdx.graphics.getHeight()  - screenY);
 //		System.out.println("x:" + screenX + " y:" + screenY );

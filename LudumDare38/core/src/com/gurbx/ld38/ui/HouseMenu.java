@@ -14,15 +14,17 @@ public class HouseMenu {
 	private TextureAtlas atlas;
 	private ImageButton[] houseButton;
 	private HouseHandler houseHandler;
+	private boolean active;
 	
 	public HouseMenu(Stage stage, TextureAtlas atlas, HouseHandler houseHandler) {
 		this.houseHandler = houseHandler;
 		initButtons(stage, atlas);
 		this.atlas = atlas;
+		this.active = true;
 	}
 
 	private void initButtons(Stage stage, TextureAtlas atlas) {
-		houseButton = new ImageButton[1];
+		houseButton = new ImageButton[2];
 		float buttonX = 56; 
 		float buttonY = 10;
         Skin skin = new Skin(atlas);
@@ -32,13 +34,25 @@ public class HouseMenu {
         style1.imageDown = skin.getDrawable("houseButtonPressed1");
 
         houseButton[0] = new ImageButton(style1);
+        houseButton[1] = new ImageButton(style1);
         
         
+        //Standard
         houseButton[0].addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	if (houseHandler.canPlaceHouse(HouseType.BASIC) == false) return;
-            	houseHandler.placeNewHouse(HouseType.BASIC);
+            	if (!active) return;
+            	if (houseHandler.canPlaceHouse(HouseType.BARRACKS) == false) return;
+            	houseHandler.placeNewHouse(HouseType.BARRACKS);
+            };
+        });
+        //Pollen Pump
+        houseButton[1].addListener( new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+            	if (!active) return;
+            	if (houseHandler.canPlaceHouse(HouseType.POLLEN_PUMP) == false) return;
+            	houseHandler.placeNewHouse(HouseType.POLLEN_PUMP);
             };
         });
         
@@ -48,6 +62,13 @@ public class HouseMenu {
 			stage.addActor(houseButton[i]);
 		}
 		
+	}
+	
+	public void setActive(boolean b) {
+		this.active = b;
+		for (int i = 0; i < houseButton.length; i++) {
+			houseButton[i].setVisible(active);
+		}
 	}
 
 }

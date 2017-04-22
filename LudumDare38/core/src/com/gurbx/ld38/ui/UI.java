@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.gurbx.ld38.Application;
 import com.gurbx.ld38.house.HouseHandler;
+import com.gurbx.ld38.house.HouseType;
+import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.utils.Constants;
 import com.gurbx.ld38.utils.GameInterface;
@@ -16,24 +18,50 @@ public class UI implements GameInterface {
 	private Stage stage;
 	private Bar bar;
 	private HouseMenu houseMenu;
+	private BarrackMenu barrackMenu;
+	private HouseHandler houseHandler;
 	private ResourceUI resourceUI;
 	
-	public UI(Application app, TextureAtlas atlas, HouseHandler houseHandler, Resources resources) {
+	public UI(Application app, TextureAtlas atlas, HouseHandler houseHandler, Resources resources, MobHandler mobHandler) {
 		this.app = app;
+		this.houseHandler = houseHandler;
 		stage = new Stage(app.uiViewport);
 		bar = new Bar(atlas);
 		houseMenu = new HouseMenu(stage, atlas, houseHandler);
+		barrackMenu = new BarrackMenu(stage, atlas, mobHandler, resources);
 		resourceUI = new ResourceUI(resources, atlas, app.font);
 	}
 
 
 	@Override
 	public void update(float delta) {
+		handleActiveMenu();
 		bar.update(delta);
 		resourceUI.update(delta);
 		stage.act();
+	}
+
+	private void handleActiveMenu() {
+		houseMenu.setActive(false);
+		barrackMenu.setActive(false, 0, 0);
+		
+		if (houseHandler.getSelectedHouse() == null) {
+			houseMenu.setActive(true);
+		} else {
+			
+			switch (houseHandler.getSelectedHouse().getType()) {
+			case  BARRACKS:
+				barrackMenu.setActive(true, houseHandler.getSelectedHouse().getX(), houseHandler.getSelectedHouse().getY());
+				break;
+
+			default:
+				break;
+			}
+
+		}
 		
 	}
+
 
 	@Override
 	public void render(SpriteBatch batch) {

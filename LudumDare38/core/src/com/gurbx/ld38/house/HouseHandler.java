@@ -2,11 +2,12 @@ package com.gurbx.ld38.house;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.gurbx.ld38.Application;
 import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.utils.GameInterface;
 
@@ -14,13 +15,16 @@ public class HouseHandler implements GameInterface {
 	private TextureAtlas atlas;
 	private ArrayList<House> houses;
 	private House placedHouse;
+	private House selectedHouse;
 	private Resources resources;
 	private float mouseX, mouseY;
+	private Sprite selectionSprite;
 	
 	public HouseHandler(TextureAtlas atlas, Resources resources) {
 		this.resources = resources;
 		this.atlas = atlas;
 		houses = new ArrayList<House>();
+		this.selectionSprite = new Sprite(new TextureRegion(atlas.findRegion("selection")));
 //		houses.add(new House(205, 400, HouseType.BASIC, atlas));
 	}
 
@@ -30,9 +34,9 @@ public class HouseHandler implements GameInterface {
 			houses.get(i).update(delta, mouseX, mouseY);
 		}
 		if (placedHouse != null) placedHouse.update(delta, mouseX, mouseY);
-		
 	}
 	
+
 	public void renderBars(ShapeRenderer shapeRenderer) {
 		shapeRenderer.begin(ShapeType.Filled);
 		for (int i = 0; i < houses.size(); i++) {
@@ -47,6 +51,7 @@ public class HouseHandler implements GameInterface {
 			houses.get(i).render(batch);;
 		}
 		if (placedHouse != null) placedHouse.render(batch);
+		if (selectedHouse != null) selectedHouse.renderSelection(batch, selectionSprite);
 		
 	}
 
@@ -89,12 +94,37 @@ public class HouseHandler implements GameInterface {
 			resources.removeResin(type.getCost());
 			placedHouse = new House(mouseX, mouseY, type, atlas);
 			break;
+		case POLLEN_PUMP:
+			resources.removeResin(type.getCost());
+			placedHouse = new PollenPump(mouseX, mouseY, type, atlas, resources);
+			break;
+		case BARRACKS:
+			resources.removeResin(type.getCost());
+			placedHouse = new Barracks(mouseX, mouseY, type, atlas);
+			break;
+			
 
 		default:
 			break;
 		}
 //		placedHouse = new House(mouseX, mouseY, basic.type, atlas);
 		
+	}
+
+	public void select(float x, float y) {
+		for (int i = 0; i < houses.size(); i++) {
+			if (houses.get(i).overlaps(x,y)) {
+				selectedHouse = houses.get(i);
+			}
+		}
+	}
+	
+	public void deselect() {
+		selectedHouse = null;
+	}
+	
+	public House getSelectedHouse() {
+		return selectedHouse;
 	}
 	
 

@@ -11,15 +11,15 @@ import com.gurbx.ld38.utils.GameInterface;
 public class House {
 	private TextureRegion placeTex, finalTex, buildTex, damagedTex;
 	private Sprite placedSprite, buildSprite, finalSprite, damagedSprite, currentSprite;
-	private float x, y;
+	protected float x, y;
 	private float width, height;
 	protected HouseType type;
 	
-	private boolean placed;
+	protected boolean placed;
 	private float progress;
 	private float buildTime;
 	private float barWidth, barHeight = 6;
-	private boolean buildFinnished;
+	protected boolean buildFinnished;
 	
 	public House(float x, float y, HouseType type, TextureAtlas atlas) {
 		this.x = x;
@@ -80,7 +80,22 @@ public class House {
 
 	public void render(SpriteBatch batch) {
 		currentSprite.draw(batch);
-		
+	}
+	
+	public void renderSelection(SpriteBatch batch, Sprite selectionSprite) {
+		int modifier = 2;
+		selectionSprite.setRotation(0);
+		selectionSprite.setPosition(x - (width*0.5f + modifier) - modifier, y + (height*0.5f + modifier)-2);
+		selectionSprite.draw(batch);
+		selectionSprite.setRotation(270);
+		selectionSprite.setPosition(x + (width*0.5f + modifier) - modifier, y + (height*0.5f + modifier-2));
+		selectionSprite.draw(batch);
+		selectionSprite.setRotation(180);
+		selectionSprite.setPosition(x + (width*0.5f + modifier) - modifier, y - (height*0.5f + modifier));
+		selectionSprite.draw(batch);
+		selectionSprite.setRotation(90);
+		selectionSprite.setPosition(x - (width*0.5f + modifier) - modifier, y - (height*0.5f + modifier));
+		selectionSprite.draw(batch);
 	}
 
 	public void dispse() {
@@ -95,6 +110,26 @@ public class House {
 	
 	public boolean isPlaced() {
 		return placed;
+	}
+
+	public boolean overlaps(float x2, float y2) {
+		if (x-width/2 < x2 && x+width/2 > x2 &&
+				y-height/2 < y2 && y+height/2 > y2) {
+			return true;
+		}
+		return false;
+	}
+
+	public HouseType getType() {
+		return type;
+	}
+
+	public float getX() {
+		return this.x;
+	}
+	
+	public float getY() {
+		return this.y;
 	}
 
 }

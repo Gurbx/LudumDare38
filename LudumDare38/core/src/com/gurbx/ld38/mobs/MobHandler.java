@@ -96,9 +96,9 @@ public class MobHandler implements GameInterface {
 	
 	
 	public void moveSelectedMobsToPoint(float x, float y) {
-		int modifier = 10;
+		int modifier = 100;
 		for (int i = 0; i < selectedMobs.size(); i++) {
-			selectedMobs.get(i).moveTo(i * (random.nextInt(modifier) - modifier/2) + x, i * (random.nextInt(modifier) - modifier/2) + y);
+			selectedMobs.get(i).moveTo((random.nextInt(modifier) - modifier/2) + x, (random.nextInt(modifier) - modifier/2) + y);
 		}
 	}
 	
@@ -112,6 +112,10 @@ public class MobHandler implements GameInterface {
 	
 	public ArrayList<Mob> getSelection() {
 		return selectedMobs;
+	}
+
+	public void addMob(Mob mob) {
+		mobs.add(mob);
 	}
 
 
