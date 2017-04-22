@@ -8,7 +8,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.gurbx.ld38.util.Constants;
+import com.gurbx.ld38.screens.LoadingScreen;
+import com.gurbx.ld38.screens.PlayScreen;
+import com.gurbx.ld38.utils.Constants;
 
 public class Application extends Game {
 	public SpriteBatch batch;
@@ -16,8 +18,16 @@ public class Application extends Game {
 	public Viewport viewport, uiViewport;
 	public AssetManager assets;
 	
+	public LoadingScreen loadingScreen;
+	public PlayScreen playScreen;
+	
 	@Override
 	public void create () {
+		initGeneral();
+		initScreens();
+	}
+	
+	private void initGeneral() {
 		batch = new SpriteBatch();
 		assets = new AssetManager();
 		camera = new OrthographicCamera();
@@ -32,6 +42,13 @@ public class Application extends Game {
 		uiCamera.update();
 	}
 	
+	private void initScreens() {
+		playScreen = new PlayScreen(this);
+		loadingScreen = new LoadingScreen(this);
+		setScreen(loadingScreen);
+	}
+
+
 	@Override
 	public void resize(int width, int height) {
 		viewport.update(width, height);
@@ -42,10 +59,6 @@ public class Application extends Game {
 	@Override
 	public void render () {
 		super.render();
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.end();
 	}
 	
 	@Override

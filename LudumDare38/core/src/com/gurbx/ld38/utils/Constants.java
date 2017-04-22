@@ -1,4 +1,4 @@
-package com.gurbx.ld38.util;
+package com.gurbx.ld38.utils;
 
 public class Constants {
 	public final static int VIRTUAL_WIDTH = 800;
