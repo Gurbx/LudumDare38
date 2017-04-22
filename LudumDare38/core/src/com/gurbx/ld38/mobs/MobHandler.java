@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
+import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.utils.GameInterface;
 
 public class MobHandler implements GameInterface {
@@ -18,16 +19,14 @@ public class MobHandler implements GameInterface {
 	private TextureAtlas atlas;
 	private Sprite selectionSprite;
 	private Random random;
+	private Resources resources;
 	
-	public MobHandler(TextureAtlas atlas) {
+	public MobHandler(TextureAtlas atlas, Resources resources) {
+		this.resources = resources;
 		this.atlas = atlas;
 		this.selectionSprite = new Sprite(new TextureRegion(atlas.findRegion("selection")));
 		mobs = new ArrayList<Mob>();
 		selectedMobs = new ArrayList<Mob>();
-		mobs.add(new Mob(new Vector2(100, 100), MobType.SOLIDER, atlas));
-		for (int i = 0; i < 20; i++) {
-			mobs.add(new Mob(new Vector2(10 + 25 * i, 100 + i * 10), MobType.SOLIDER, atlas));
-		}
 		random = new Random();
 	}
 	
@@ -116,6 +115,18 @@ public class MobHandler implements GameInterface {
 
 	public void addMob(Mob mob) {
 		mobs.add(mob);
+	}
+
+	public boolean canBuyMob(MobType type) {
+		if (resources.getPollen() > type.getCost()) {
+			return true;
+		}
+		return false;
+	}
+
+	public void buyMob(MobType type) {
+		resources.removePollen(type.getCost());
+		
 	}
 
 

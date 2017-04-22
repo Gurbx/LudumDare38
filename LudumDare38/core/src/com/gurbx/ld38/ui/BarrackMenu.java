@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.gurbx.ld38.house.Barracks;
 import com.gurbx.ld38.mobs.Mob;
 import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.mobs.MobType;
@@ -19,13 +20,14 @@ public class BarrackMenu {
 	private MobHandler mobHandler;
 	private Resources resources;
 	private boolean active;
+	private Barracks barracks;
 	
 	public BarrackMenu(Stage stage, TextureAtlas atlas, MobHandler mobHandler, Resources resources) {
 		this.atlas = atlas;
 		this.mobHandler = mobHandler;
 		this.resources = resources;
 		initButtons(stage);
-		setActive(false, 0, 0);
+		setActive(false, null);
 	}
 	
 	private void initButtons(Stage stage) {
@@ -46,9 +48,13 @@ public class BarrackMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
-//            	if (houseHandler.canPlaceHouse(HouseType.BASIC) == false) return;
+            	if (mobHandler.canBuyMob(MobType.SOLIDER) == false) return;
+            	if (barracks.canSpawnMob() == false) return;
+            	mobHandler.buyMob(MobType.SOLIDER);
+            	barracks.spawnMob(MobType.SOLIDER);
+            	
 //            	houseHandler.placeNewHouse(HouseType.BASIC);
-            	mobHandler.addMob(new Mob(new Vector2(spawmX,spawnY), MobType.SOLIDER, atlas));
+//            	mobHandler.addMob(new Mob(new Vector2(spawmX,spawnY), MobType.SOLIDER, atlas));
             };
         });
         
@@ -59,9 +65,8 @@ public class BarrackMenu {
 		}
 	}
 
-	public void setActive(boolean b, float x, float y) {
-		this.spawmX = x;
-		this.spawnY = y;
+	public void setActive(boolean b, Barracks barracks) {
+		this.barracks = barracks;
 		this.active = b;
 		for (int i = 0; i < mobButton.length; i++) {
 			mobButton[i].setVisible(active);

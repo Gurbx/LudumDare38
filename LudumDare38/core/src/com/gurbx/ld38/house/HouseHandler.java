@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.utils.GameInterface;
 
@@ -19,8 +20,10 @@ public class HouseHandler implements GameInterface {
 	private Resources resources;
 	private float mouseX, mouseY;
 	private Sprite selectionSprite;
+	private MobHandler mobHandler;
 	
-	public HouseHandler(TextureAtlas atlas, Resources resources) {
+	public HouseHandler(TextureAtlas atlas, Resources resources, MobHandler mobHandler) {
+		this.mobHandler = mobHandler;
 		this.resources = resources;
 		this.atlas = atlas;
 		houses = new ArrayList<House>();
@@ -100,7 +103,7 @@ public class HouseHandler implements GameInterface {
 			break;
 		case BARRACKS:
 			resources.removeResin(type.getCost());
-			placedHouse = new Barracks(mouseX, mouseY, type, atlas);
+			placedHouse = new Barracks(mouseX, mouseY, type, atlas, mobHandler);
 			break;
 			
 

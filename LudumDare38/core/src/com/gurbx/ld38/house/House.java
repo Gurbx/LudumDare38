@@ -9,19 +9,22 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.gurbx.ld38.utils.GameInterface;
 
 public class House {
+	protected TextureAtlas atlas;
 	private TextureRegion placeTex, finalTex, buildTex, damagedTex;
 	private Sprite placedSprite, buildSprite, finalSprite, damagedSprite, currentSprite;
 	protected float x, y;
-	private float width, height;
+	protected float width;
+	protected float height;
 	protected HouseType type;
 	
 	protected boolean placed;
-	private float progress;
+	protected float progress;
 	private float buildTime;
-	private float barWidth, barHeight = 6;
+	protected float barWidth, barHeight = 6;
 	protected boolean buildFinnished;
 	
 	public House(float x, float y, HouseType type, TextureAtlas atlas) {
+		this.atlas = atlas;
 		this.x = x;
 		this.y = y;
 		this.type = type;
@@ -71,7 +74,7 @@ public class House {
 	
 	public void renderBars(ShapeRenderer shapeRenderer) {
 		//Render progress bar
-		shapeRenderer.setColor(Color.YELLOW);
+		shapeRenderer.setColor(Color.GREEN);
 		if (progress < buildTime) {
 			shapeRenderer.rect(x - width/2, y-height/2-10, barWidth * progress/buildTime, barHeight);
 		}

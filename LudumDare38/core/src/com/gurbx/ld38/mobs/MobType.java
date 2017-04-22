@@ -1,7 +1,7 @@
 package com.gurbx.ld38.mobs;
 
 public enum MobType {
-	SOLIDER("Mob", 10, 1, 1f, 25f, false, 10, "mob", 1,1,1 );
+	SOLIDER("Mob", 10, 1, 1f, 25f, false, 10, "mob", 10, 5f, 1,1,1 );
 	
 	private String name;
 	private int health;
@@ -11,6 +11,8 @@ public enum MobType {
 	private boolean ranged;
 	private int range;
 	private String path;
+	private int cost; //in pollen
+	private float spawnTime;
 	
 	private int moveFrames;
 	private int standFrames;
@@ -18,7 +20,7 @@ public enum MobType {
 	
 	
 	private MobType(String name, int health, int damage, float attackSpeed, float movementSpeed, boolean ranged,
-			int range, String path,
+			int range, String path, int cost, float spawnTime,
 			int moveF, int standF, int attackF) {
 		this.name = name;
 		this.health = health;
@@ -28,6 +30,8 @@ public enum MobType {
 		this.ranged = ranged;
 		this.range = range;
 		this.path = path;
+		this.cost = cost;
+		this.spawnTime = spawnTime;
 		this.moveFrames = moveF;
 		this.standFrames = standF;
 		this.attackFrames = attackF;
@@ -86,6 +90,15 @@ public enum MobType {
 
 	public int getAttackFrames() {
 		return attackFrames;
+	}
+
+
+	public int getCost() {
+		return cost;
+	}
+	
+	public float getSpawnTime() {
+		return spawnTime;
 	}
 	
 	
