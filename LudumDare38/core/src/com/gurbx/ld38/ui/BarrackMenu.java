@@ -1,5 +1,8 @@
 package com.gurbx.ld38.ui;
 
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -14,6 +17,9 @@ import com.gurbx.ld38.mobs.MobType;
 import com.gurbx.ld38.resources.Resources;
 
 public class BarrackMenu {
+	private float buttonX = 56; 
+	private float buttonY = 10;
+	private float modifier = 64;
 	private float spawmX, spawnY;
 	private TextureAtlas atlas;
 	private ImageButton[] mobButton;
@@ -32,8 +38,8 @@ public class BarrackMenu {
 	
 	private void initButtons(Stage stage) {
 		mobButton = new ImageButton[1];
-		float buttonX = 56; 
-		float buttonY = 10;
+		buttonX = 56; 
+		buttonY = 10;
         Skin skin = new Skin(atlas);
         ImageButton.ImageButtonStyle style1 = new ImageButton.ImageButtonStyle();
         style1.imageUp = skin.getDrawable("mobButton1");
@@ -60,7 +66,7 @@ public class BarrackMenu {
         
     
         for (int i = 0; i < mobButton.length; i++) {
-            mobButton[i].setPosition(buttonX + 64 * i, buttonY);
+            mobButton[i].setPosition(buttonX + modifier * i, buttonY);
 			stage.addActor(mobButton[i]);
 		}
 	}
@@ -70,6 +76,13 @@ public class BarrackMenu {
 		this.active = b;
 		for (int i = 0; i < mobButton.length; i++) {
 			mobButton[i].setVisible(active);
+		}
+	}
+	
+	public void render(SpriteBatch batch, BitmapFont font) {
+		if (barracks != null) {
+			font.setColor(Color.WHITE);
+			font.draw(batch, "" + barracks.getMobQueueSize(), buttonX + 45 , buttonY+55);
 		}
 	}
 

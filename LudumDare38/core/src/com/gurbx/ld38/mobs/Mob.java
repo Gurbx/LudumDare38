@@ -29,6 +29,9 @@ public class Mob implements GameInterface, Target {
 	private float radians;
 	private boolean hasMovementTarget;
 	private float elapsedTime;
+	private float newTargetTimer;
+	private float newTargetTime = 0.8f;
+	private boolean canSelectNewTarget;
 	
 	private boolean selected;
 	private boolean shouldRemove;
@@ -36,6 +39,9 @@ public class Mob implements GameInterface, Target {
 	private int maxHealth;
 	private float speed;
 	private Enemy target;
+	
+	private float attackTimer;
+	private boolean canAttack;
 	
 	public Mob(Vector2 position, MobType type, TextureAtlas atlas) {
 		this.position = position;
@@ -47,7 +53,11 @@ public class Mob implements GameInterface, Target {
 		this.maxHealth = health;
 		this.speed = type.getMovementSpeed();
 		this.elapsedTime = 0;
+		canSelectNewTarget = false;
+		newTargetTimer = newTargetTime;
 		initAnimation(atlas, type);
+		attackTimer = type.getAttackSpeed();
+		canAttack = false;
 	}
 	
 	private void initAnimation(TextureAtlas atlas, MobType type) {
@@ -62,6 +72,7 @@ public class Mob implements GameInterface, Target {
 	}
 
 	public void moveTo(float x, float y) {
+		newTargetTimer = newTargetTime;
 		this.hasMovementTarget = true;
 		this.targetX = x;
 		this.targetY = y;
@@ -79,6 +90,12 @@ public class Mob implements GameInterface, Target {
 
 	@Override
 	public void update(float delta) {
+		attackTimer -= delta;
+		if (attackTimer <= 0) canAttack = true;
+		newTargetTimer-=delta;
+		if (newTargetTimer <= 0) {
+			canSelectNewTarget = true;
+		}
 		elapsedTime += delta;
 		handleMovement(delta);
 	}
@@ -91,6 +108,14 @@ public class Mob implements GameInterface, Target {
 		int targetRange = 2;
 		if (Math.abs(position.x - targetX) <= targetRange && Math.abs(position.y - targetY) <= targetRange) {
 			hasMovementTarget = false;
+			
+			if (target != null) {
+				if (target.isDead() == false && canAttack) {
+					target.damage(type.getDamage());
+					canAttack = false;
+					attackTimer = type.getAttackSpeed();
+				}
+			}
 		}
 		
 	}
@@ -146,7 +171,6 @@ public class Mob implements GameInterface, Target {
 	}
 	
 	public boolean isWithinRegion(float x, float y, float x2, float y2) {
-
 		if (position.x >= x && position.x <= x2 &&
 				position.y >= y && position.y <= y2) {
 			return true;
@@ -156,6 +180,7 @@ public class Mob implements GameInterface, Target {
 	}
 	
 	public void setTargetToClosest(ArrayList<Enemy> enemies) {
+		if (canSelectNewTarget == false) return;
 		if (enemies.isEmpty()) return;
 		int index = 0;
 		float mobDistace = 999999;
@@ -172,6 +197,9 @@ public class Mob implements GameInterface, Target {
 		}
 		if (mobDistace <= type.getRange()) {
 			target = enemies.get(index);
+			moveTo(target.getPosition().x, target.getPosition().y);
+			canSelectNewTarget = false;
+			newTargetTimer = newTargetTime;
 		} else {
 			target = null;
 		}

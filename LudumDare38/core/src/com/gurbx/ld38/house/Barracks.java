@@ -1,5 +1,7 @@
 package com.gurbx.ld38.house;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -14,19 +16,26 @@ public class Barracks extends House {
 	private MobType type;
 	private float spawnTimer;
 	private float spawnTime;
+	private ArrayList<Mob> mobQueue;
 
 	public Barracks(float x, float y, HouseType type, TextureAtlas atlas, MobHandler mobHandler) {
 		super(x, y, type, atlas);
+		mobQueue = new ArrayList<Mob>();
 		spawningMob = false;
 		spawnTimer = 0;
 		this.mobHandler = mobHandler;
 	}
 
 	public void spawnMob(MobType type) {
-		spawningMob = true;
-		this.type = type;
-		spawnTime = type.getSpawnTime();
-		spawnTimer = 0;
+		if (spawningMob) {
+			mobQueue.add(new Mob(new Vector2(this.x, this.y), type, atlas));
+		} else {
+			mobQueue.add(new Mob(new Vector2(this.x, this.y), type, atlas));
+			spawningMob = true;
+			this.type = type;
+			spawnTime = type.getSpawnTime();
+			spawnTimer = 0;	
+		}
 	}
 	
 	@Override
@@ -34,8 +43,12 @@ public class Barracks extends House {
 		super.update(delta, x, y);
 		spawnTimer += delta;
 		if (spawningMob && spawnTimer >= spawnTime) {
-			mobHandler.addMob(new Mob(new Vector2(this.x, this.y), type, atlas));
-			spawningMob = false;
+			mobHandler.addMob(mobQueue.get(0));
+			mobQueue.remove(0);
+			spawnTimer = 0;
+			if (mobQueue.isEmpty()) {
+				spawningMob = false;
+			}
 		}
 	}
 	
@@ -49,10 +62,14 @@ public class Barracks extends House {
 	}
 
 	public boolean canSpawnMob() {
-		if (placed == true && buildFinnished && spawningMob == false) {
+		if (placed == true && buildFinnished) {
 			return true;
 		} 
 		return false;
+	}
+	
+	public int getMobQueueSize() {
+		return mobQueue.size();
 	}
 
 }

@@ -95,6 +95,10 @@ public class PlayScreen extends GameScreen {
 		
 		ui.renderStage();
 		
+		app.batch.begin();
+		ui.renderOverStage(app.batch);
+		app.batch.end();
+		
 	}
 
 	@Override

@@ -17,7 +17,7 @@ import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.GameInterface;
 import com.gurbx.ld38.utils.Target;
 
-public class Enemy implements GameInterface {
+public class Enemy implements GameInterface, Target {
 	private Vector2 position;
 	private float targetX, targetY, dx, dy;
 	private float width, height;
@@ -101,15 +101,6 @@ public class Enemy implements GameInterface {
 		batch.draw(animation.getKeyFrame(elapsedTime, true), position.x - width*0.5f, position.y-height*0.5f, width/2, height/2, width, height, 1f, 1f, (float) Math.toDegrees(radians) + 90);
 		
 	}
-	
-	public void damage(int damage) {
-		FloatingTextHandler.addText("" + damage, position.x - width/2, position.y/width + 10, 50, 2.5f, Color.RED);
-		this.health -= damage;
-		if (health < 0) {
-			health = 0;
-			shouldRemove = true;
-		}
-	}
 
 	@Override
 	public void dispse() {
@@ -169,6 +160,24 @@ public class Enemy implements GameInterface {
 
 	public Vector2 getPosition() {
 		return position;
+	}
+
+	public boolean isDead() {
+		if (this.health <= 0) {
+			shouldRemove = true;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public void damage(int damage) {
+		FloatingTextHandler.addText("" + damage, position.x - width/2, position.y - width/2 + 10, 50, 2.5f, Color.RED);
+		this.health -= damage;
+		if (health < 0) {
+			health = 0;
+			shouldRemove = true;
+		}
 	}
 	
 	

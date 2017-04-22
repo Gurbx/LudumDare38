@@ -75,6 +75,10 @@ public class UI implements GameInterface {
 	public void renderStage() {
 		stage.draw();
 	}
+	
+	public void renderOverStage(SpriteBatch batch) {
+		barrackMenu.render(batch, app.font);
+	}
 
 	@Override
 	public void dispse() {
