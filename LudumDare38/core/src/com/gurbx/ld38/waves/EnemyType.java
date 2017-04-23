@@ -4,7 +4,9 @@ public enum EnemyType {
 	BUG (15, 1, 25, 1, false, false, 15, "bug", 4),
 	MINI_BUG (5, 1, 35, 1, false, false, 15, "miniBug", 1),
 	BIGGER_BUG (25, 2, 15, 1, false, false, 15, "biggerBug", 4),
-	MEGA_BUG (100, 10, 15, 1, false, false, 15, "megaBug", 4);
+	MEGA_BUG (100, 15, 15, 1, false, false, 15, "megaBug", 4),
+	BROWN_BUG (55, 20, 40, 1, false, true, 15, "brownBug", 2),
+	PURPLE_BUG (200, 20, 30, 1, false, true, 15, "purpleBug", 2);
 	
 	private int health;
 	private int damage;

@@ -388,65 +388,93 @@ housePlaced3
   orig: 22, 22
   offset: 0, 0
   index: -1
+purpleBug1
+  rotate: false
+  xy: 837, 545
+  size: 20, 22
+  orig: 20, 22
+  offset: 0, 0
+  index: -1
+purpleBug2
+  rotate: false
+  xy: 837, 521
+  size: 20, 22
+  orig: 20, 22
+  offset: 0, 0
+  index: -1
+brownBug1
+  rotate: false
+  xy: 825, 501
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
+brownBug2
+  rotate: false
+  xy: 825, 481
+  size: 14, 18
+  orig: 14, 18
+  offset: 0, 0
+  index: -1
 pollen
   rotate: false
-  xy: 837, 551
+  xy: 841, 503
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 resin
   rotate: false
-  xy: 837, 533
+  xy: 841, 485
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 bug3
   rotate: false
-  xy: 825, 503
+  xy: 825, 463
   size: 12, 16
   orig: 12, 16
   offset: 0, 0
   index: -1
 bug4
   rotate: false
-  xy: 825, 485
+  xy: 825, 445
   size: 12, 16
   orig: 12, 16
   offset: 0, 0
   index: -1
 mobArcher
   rotate: false
-  xy: 837, 521
+  xy: 825, 433
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 mobWarlock
   rotate: false
-  xy: 825, 473
+  xy: 825, 421
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 mobWizzard
   rotate: false
-  xy: 825, 461
+  xy: 825, 409
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 miniBug1
   rotate: false
-  xy: 839, 509
+  xy: 825, 397
   size: 8, 10
   orig: 8, 10
   offset: 0, 0
   index: -1
 mob
   rotate: false
-  xy: 825, 451
+  xy: 380, 73
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
@@ -467,14 +495,14 @@ simpleParticle
   index: -1
 spell
   rotate: false
-  xy: 380, 75
+  xy: 869, 955
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 spell2
   rotate: false
-  xy: 869, 955
+  xy: 861, 947
   size: 6, 6
   orig: 6, 6
   offset: 0, 0

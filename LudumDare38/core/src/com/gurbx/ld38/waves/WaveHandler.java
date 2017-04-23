@@ -109,6 +109,22 @@ public class WaveHandler implements GameInterface {
 				enemies.addEnemy(new Enemy(position, EnemyType.MEGA_BUG, atlas));
 			}
 		}
+		
+		//After 15
+		if (waveNr >= 15) {
+			for (int i = 0; i < (1 + waveNr/2) ; i++) {
+				Vector2 position = new Vector2(x - range/2 + random.nextInt((int) range), y - range/2 + random.nextInt((int) range));
+				enemies.addEnemy(new Enemy(position, EnemyType.BROWN_BUG, atlas));
+			}
+		}
+		
+		//After 20
+		if (waveNr >= 20) {
+			for (int i = 0; i < (1 + waveNr/2) ; i++) {
+				Vector2 position = new Vector2(x - range/2 + random.nextInt((int) range), y - range/2 + random.nextInt((int) range));
+				enemies.addEnemy(new Enemy(position, EnemyType.PURPLE_BUG, atlas));
+			}
+		}
 		waveNr++;
 		
 	}
