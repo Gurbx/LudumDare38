@@ -82,11 +82,11 @@ highMax: 500.0
 relative: false
 scalingCount: 3
 scaling0: 1.0
-scaling1: 0.37254903
+scaling1: 0.0
 scaling2: 0.0
 timelineCount: 3
 timeline0: 0.0
-timeline1: 0.32876712
+timeline1: 0.20547946
 timeline2: 0.9794521
 - Angle - 
 active: true

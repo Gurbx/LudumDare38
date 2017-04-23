@@ -402,9 +402,16 @@ mobWizzard
   orig: 10, 10
   offset: 0, 0
   index: -1
+minBug
+  rotate: false
+  xy: 1009, 975
+  size: 8, 10
+  orig: 8, 10
+  offset: 0, 0
+  index: -1
 mob
   rotate: false
-  xy: 1009, 977
+  xy: 845, 637
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
