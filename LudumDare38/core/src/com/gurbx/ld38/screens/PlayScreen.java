@@ -84,6 +84,7 @@ public class PlayScreen extends GameScreen {
 			app.setScreen(app.loadingScreen);
 		}
 		messageHandler.update(delta);
+		app.waveNr = waves.getWaveNr();
 	}
 
 	@Override

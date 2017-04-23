@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.gurbx.ld38.house.HouseHandler;
 import com.gurbx.ld38.mobs.Mob;
 import com.gurbx.ld38.mobs.MobHandler;
+import com.gurbx.ld38.utils.SoundHandler;
 
 public class Input implements InputProcessor {
 	private Vector2 lastTouch;
@@ -82,6 +83,7 @@ public class Input implements InputProcessor {
 //		Gdx.input.isButtonPressed(B)
 		if (button == 1) {
 			mobHandler.moveSelectedMobsToPoint(touchUp.x, touchUp.y);
+			SoundHandler.playSelect(1);
 		}
 		
 		return false;

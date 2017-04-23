@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.GameInterface;
+import com.gurbx.ld38.utils.SoundHandler;
 import com.gurbx.ld38.utils.Target;
 import com.gurbx.ld38.utils.FloatingText.TextType;
 
@@ -46,6 +47,7 @@ public class House implements Target {
 		}
 		shouldRemove = false;
 		health = type.getHealth();
+		if (instantPlacement) currentSprite = finalSprite;
 	}
 
 	private void initTextures(TextureAtlas atlas) {
@@ -77,9 +79,11 @@ public class House implements Target {
 			this.x = x;
 			this.y = y;
 		}
-		if (progress >= buildTime) {
+		if (progress >= buildTime && !buildFinnished) {
 			this.buildFinnished = true;
 			currentSprite = finalSprite;
+			SoundHandler.playBuildingFinished(1);
+			
 		}
 		currentSprite.setPosition(this.x-width/2, this.y-height/2);
 	}
@@ -124,6 +128,7 @@ public class House implements Target {
 	}
 	
 	public void place() {
+		SoundHandler.playSelect(2);
 		placed = true;
 		currentSprite = buildSprite;
 		currentSprite.setPosition(x - width/2, y - height/2);
@@ -159,6 +164,7 @@ public class House implements Target {
 		this.health -= damage;
 		if (health <= 0) {
 			health = 0;
+			SoundHandler.playHit();
 			shouldRemove = true;
 		}
 		

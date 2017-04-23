@@ -71,11 +71,11 @@ public class GameOverScreen extends GameScreen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		app.batch.begin();
 		app.batch.draw(logo, Constants.UI_VIRTUAL_WIDTH/2 - logo.getRegionWidth()/2, Constants.UI_VIRTUAL_HEIGHT/2 - logo.getRegionHeight()/2 + 250);
-		app.batch.draw(mob, Constants.UI_VIRTUAL_WIDTH/2 - mob.getRegionWidth()/2, Constants.UI_VIRTUAL_HEIGHT/2 - mob.getRegionHeight()/2 - 50);
+//		app.batch.draw(mob, Constants.UI_VIRTUAL_WIDTH/2 - mob.getRegionWidth()/2, Constants.UI_VIRTUAL_HEIGHT/2 - mob.getRegionHeight()/2 - 50);
+		app.font.draw(app.batch, "Waves reached: " + app.waveNr, Constants.UI_VIRTUAL_WIDTH/2 - 60, 460);
 		app.batch.end();
 		
 		stage.draw();
-		
 	}
 
 	private void update(float delta) {

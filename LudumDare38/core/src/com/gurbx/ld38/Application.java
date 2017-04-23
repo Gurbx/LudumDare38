@@ -29,6 +29,8 @@ public class Application extends Game {
 	public MenuScreen menuScreen;
 	public GameOverScreen gameOverScreen;
 	
+	public static int waveNr;
+	
 	@Override
 	public void create () {
 		initGeneral();

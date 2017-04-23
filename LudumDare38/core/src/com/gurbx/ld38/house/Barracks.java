@@ -10,6 +10,7 @@ import com.gurbx.ld38.mobs.Mob;
 import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.mobs.MobType;
 import com.gurbx.ld38.resources.Resources;
+import com.gurbx.ld38.utils.SoundHandler;
 
 public class Barracks extends House {
 	private boolean spawningMob;
@@ -45,6 +46,7 @@ public class Barracks extends House {
 		spawnTimer += delta;
 		if (spawningMob && spawnTimer >= spawnTime) {
 			mobHandler.addMob(mobQueue.get(0));
+			SoundHandler.playBuildingFinished(0);
 			mobQueue.remove(0);
 			spawnTimer = 0;
 			if (mobQueue.isEmpty()) {

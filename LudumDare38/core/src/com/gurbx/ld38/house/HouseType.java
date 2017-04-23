@@ -1,13 +1,13 @@
 package com.gurbx.ld38.house;
 
 public enum HouseType {
-	BASIC("basic", 5f, 20, 0, 0, "1", 50),
+	BASIC("basic", 5f, 50, 0, 0, "1", 50),
 	BARRACKS("Barracks", 7.5f, 50, 0, 0, "1", 150),
-	RESIN_PUMP("Resin Pump", 4f, 5, 0, 0, "3", 100),
-	POLLEN_PUMP("Pollen Pump", 4f, 5, 0, 0, "2", 100),
-	RESIN_STORAGE("Resin Storage", 20f, 5, 0, 0, "4", 100),
-	POLLEN_STORAGE("Pollen Storage", 20f, 5, 0, 0, "5", 100),
-	MOB_HOUSE ("House", 10f, 5, 0, 0, "6", 50);
+	RESIN_PUMP("Resin Pump", 4f, 25, 0, 0, "3", 100),
+	POLLEN_PUMP("Pollen Pump", 4f, 25, 0, 0, "2", 100),
+	RESIN_STORAGE("Resin Storage", 20f, 50, 0, 0, "4", 100),
+	POLLEN_STORAGE("Pollen Storage", 20f, 50, 0, 0, "5", 100),
+	MOB_HOUSE ("House", 10f, 20, 0, 0, "6", 100);
 	
 	private String name;
 	private float buildTime;

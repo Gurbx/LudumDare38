@@ -18,6 +18,7 @@ import com.gurbx.ld38.mobs.Mob;
 import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.mobs.MobType;
 import com.gurbx.ld38.resources.Resources;
+import com.gurbx.ld38.utils.SoundHandler;
 
 public class BarrackMenu {
 	private String soliderDescription;
@@ -94,6 +95,7 @@ public class BarrackMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (mobHandler.canBuyMob(MobType.SOLIDER) == false) return;
             	if (barracks.canSpawnMob(MobType.SOLIDER, resources) == false) return;
             	mobHandler.buyMob(MobType.SOLIDER);
@@ -117,6 +119,7 @@ public class BarrackMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (mobHandler.canBuyMob(MobType.ARCHER) == false) return;
             	if (barracks.canSpawnMob(MobType.ARCHER, resources) == false) return;
             	mobHandler.buyMob(MobType.ARCHER);
@@ -139,6 +142,7 @@ public class BarrackMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (mobHandler.canBuyMob(MobType.WIZZARD) == false) return;
             	if (barracks.canSpawnMob(MobType.WIZZARD, resources) == false) return;
             	mobHandler.buyMob(MobType.WIZZARD);
@@ -161,6 +165,7 @@ public class BarrackMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (mobHandler.canBuyMob(MobType.WARLOCK) == false) return;
             	if (barracks.canSpawnMob(MobType.WARLOCK, resources) == false) return;
             	mobHandler.buyMob(MobType.WARLOCK);

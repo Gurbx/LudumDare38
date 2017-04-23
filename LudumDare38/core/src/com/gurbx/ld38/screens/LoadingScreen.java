@@ -22,19 +22,21 @@ public class LoadingScreen extends GameScreen {
 
 	@Override
 	public void show() {
-		switch (load) {
-		case MENU:
-			loadMenu();
-			break;
-		case PLAY:
-			loadPlay();
-			break;
-		case GAMEOVER:
-			loadMenu();
-			break;
-		default:
-			break;
-		}
+		loadMenu();
+		loadPlay();
+//		switch (load) {
+//		case MENU:
+//			loadMenu();
+//			break;
+//		case PLAY:
+//			loadPlay();
+//			break;
+//		case GAMEOVER:
+//			loadMenu();
+//			break;
+//		default:
+//			break;
+//		}
 	}
 
 	private void loadMenu() {
@@ -47,8 +49,16 @@ public class LoadingScreen extends GameScreen {
 		app.assets.load("img/villagePack.atlas", TextureAtlas.class);
 		//sound
 		app.assets.load("sound/hit1.wav", Sound.class);
+		app.assets.load("sound/hit2.wav", Sound.class);
+		app.assets.load("sound/hit3.wav", Sound.class);
 		app.assets.load("sound/select1.wav", Sound.class);
+		app.assets.load("sound/select2.wav", Sound.class);
+		app.assets.load("sound/select3.wav", Sound.class);
 		app.assets.load("sound/lazer1.wav", Sound.class);
+		app.assets.load("sound/bling1.wav", Sound.class);
+		app.assets.load("sound/bling2.wav", Sound.class);
+		app.assets.load("sound/plop1.wav", Sound.class);
+		app.assets.load("sound/buttonSelect.wav", Sound.class);
 	}
 	
 	private void update(float delta) {

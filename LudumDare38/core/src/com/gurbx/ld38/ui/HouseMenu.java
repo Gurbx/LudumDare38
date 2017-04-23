@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.gurbx.ld38.house.HouseHandler;
 import com.gurbx.ld38.house.HouseType;
+import com.gurbx.ld38.utils.SoundHandler;
 
 import javafx.geometry.HPos;
 
@@ -99,6 +100,7 @@ public class HouseMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (houseHandler.canPlaceHouse(HouseType.BARRACKS) == false) return;
             	houseHandler.placeNewHouse(HouseType.BARRACKS);
             };
@@ -118,6 +120,7 @@ public class HouseMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (houseHandler.canPlaceHouse(HouseType.POLLEN_PUMP) == false) return;
             	houseHandler.placeNewHouse(HouseType.POLLEN_PUMP);
             };
@@ -138,6 +141,7 @@ public class HouseMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (houseHandler.canPlaceHouse(HouseType.RESIN_PUMP) == false) return;
             	houseHandler.placeNewHouse(HouseType.RESIN_PUMP);
             };
@@ -158,6 +162,7 @@ public class HouseMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (houseHandler.canPlaceHouse(HouseType.RESIN_STORAGE) == false) return;
             	houseHandler.placeNewHouse(HouseType.RESIN_STORAGE);
             };
@@ -178,6 +183,7 @@ public class HouseMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (houseHandler.canPlaceHouse(HouseType.POLLEN_STORAGE) == false) return;
             	houseHandler.placeNewHouse(HouseType.POLLEN_STORAGE);
             };
@@ -198,6 +204,7 @@ public class HouseMenu {
             @Override
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
+        		SoundHandler.playButtonSelect();
             	if (houseHandler.canPlaceHouse(HouseType.MOB_HOUSE) == false) return;
             	houseHandler.placeNewHouse(HouseType.MOB_HOUSE);
             };
