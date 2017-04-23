@@ -13,7 +13,7 @@ import com.gurbx.ld38.utils.GameInterface;
 
 public class WaveHandler implements GameInterface {
 	private int waveNr;
-	private float time_between_waves = 15f;
+	private float time_between_waves = 50f;
 	private float timer;
 	private Random random;
 	private EnemyHandler enemies;
@@ -26,7 +26,7 @@ public class WaveHandler implements GameInterface {
 		this.mobHandler = mobHandler;
 		random = new Random();
 		waveNr = 1;
-		timer = time_between_waves;
+		timer = time_between_waves * 1.5f;
 		this.atlas = atlas;
 		enemies = new EnemyHandler(houseHandler, mobHandler);
 	}
@@ -130,7 +130,7 @@ public class WaveHandler implements GameInterface {
 	}
 	
 	public int getWaveNr() {
-		return waveNr;
+		return waveNr-1;
 	}
 
 }

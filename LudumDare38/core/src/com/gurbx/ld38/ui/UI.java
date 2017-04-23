@@ -88,8 +88,12 @@ public class UI implements GameInterface {
 		//Wave icon
 		batch.draw(waveIcon, waveX, waveY);
 		app.font.setColor(Color.WHITE);
-		app.font.draw(app.batch, "Current Wave", waveX - 32, waveY + 62);
-		app.font.draw(app.batch, "" + waveNr, waveX + 20, waveY+28);
+		if (waveNr >= 10) {
+			app.font.draw(app.batch, "" + waveNr, waveX + 17f, waveY+28);
+		} else {
+			app.font.draw(app.batch, "" + waveNr, waveX + 21, waveY+28);
+		}
+		app.font.draw(app.batch, "Current Wave", waveX - 30, waveY + 62);
 	}
 
 	@Override

@@ -34,8 +34,8 @@ public class MobHandler implements GameInterface {
 		float x = 400;
 		float y = 350;
 		float md = 15f;
-		mobs.add(new Mob(new Vector2(x + md, y), MobType.WIZZARD, atlas));
-		mobs.add(new Mob(new Vector2(x + md, y), MobType.WARLOCK, atlas));
+//		mobs.add(new Mob(new Vector2(x + md, y), MobType.WIZZARD, atlas));
+//		mobs.add(new Mob(new Vector2(x + md, y), MobType.WARLOCK, atlas));
 		
 		
 		mobs.add(new Mob(new Vector2(x + md, y), MobType.SOLIDER, atlas));

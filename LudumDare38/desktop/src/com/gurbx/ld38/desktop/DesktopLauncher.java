@@ -9,6 +9,7 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.width = 800;
 		config.height = 800;
+		config.title = "LD38: Attack of the bugs!";
 		config.resizable = false;
 		new LwjglApplication(new Application(), config);
 	}
