@@ -247,12 +247,12 @@ public class HouseMenu {
 			type = HouseType.BARRACKS;
 			break;
 		case 2:
-			header = "Flower";
+			header = "Pollen Generator";
 			description = pollenPumpDescription;
 			type = HouseType.POLLEN_PUMP;
 			break;
 		case 3:
-			header = "Acorn";
+			header = "Resin Generator";
 			description = resinPumpDescription;
 			type = HouseType.RESIN_PUMP;
 			break;
