@@ -8,7 +8,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.gurbx.ld38.screens.GameOverScreen;
 import com.gurbx.ld38.screens.LoadingScreen;
+import com.gurbx.ld38.screens.LoadingScreen.LoadNext;
+import com.gurbx.ld38.screens.MenuScreen;
 import com.gurbx.ld38.screens.PlayScreen;
 import com.gurbx.ld38.utils.Constants;
 
@@ -23,6 +26,8 @@ public class Application extends Game {
 	
 	public LoadingScreen loadingScreen;
 	public PlayScreen playScreen;
+	public MenuScreen menuScreen;
+	public GameOverScreen gameOverScreen;
 	
 	@Override
 	public void create () {
@@ -51,6 +56,9 @@ public class Application extends Game {
 	private void initScreens() {
 		playScreen = new PlayScreen(this);
 		loadingScreen = new LoadingScreen(this);
+		menuScreen = new MenuScreen(this);
+		gameOverScreen = new GameOverScreen(this);
+		loadingScreen.setLoad(LoadNext.MENU);
 		setScreen(loadingScreen);
 	}
 

@@ -84,6 +84,7 @@ public class MobHandler implements GameInterface {
 			}
 		}
 		projectileHandler.update(delta);
+		resources.setUnits(mobs.size());
 	}
 
 	@Override
@@ -133,7 +134,8 @@ public class MobHandler implements GameInterface {
 	}
 
 	public boolean canBuyMob(MobType type) {
-		if (resources.getPollen() > type.getCost()) {
+		if (resources.getPollen() > type.getCost() &&
+				resources.canBuyUnit()) {
 			return true;
 		}
 		return false;

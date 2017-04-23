@@ -17,6 +17,8 @@ import com.gurbx.ld38.utils.FloatingText.TextType;
 import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.FriendlyProjectile;
 import com.gurbx.ld38.utils.GameInterface;
+import com.gurbx.ld38.utils.ProjectileType;
+import com.gurbx.ld38.utils.SoundHandler;
 import com.gurbx.ld38.utils.Target;
 import com.gurbx.ld38.waves.Enemy;
 
@@ -129,7 +131,10 @@ public class Mob implements Target {
 								type.getProjectileSpeed(), projectileTex, enemies, type.getDamage(), type.getProjectileType()));
 				canAttack = false;
 				attackTimer = type.getAttackSpeed();
-			}
+				if (type.getProjectileType() == ProjectileType.Spell) {
+					SoundHandler.playLazer();
+				}
+ 			}
 		}
 		
 	}

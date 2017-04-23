@@ -8,27 +8,58 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.gurbx.ld38.Application;
 
 public class LoadingScreen extends GameScreen {
+	public enum LoadNext { PLAY, MENU; }
+	private LoadNext load;
 
 	public LoadingScreen(Application app) {
 		super(app);
-		// TODO Auto-generated constructor stub
+		load = LoadNext.MENU;
+	}
+	
+	public void setLoad(LoadNext load) {
+		this.load = load;
 	}
 
 	@Override
 	public void show() {
-		loadAssets();
+		switch (load) {
+		case MENU:
+			loadMenu();
+			break;
+		case PLAY:
+			loadPlay();
+			break;
+		default:
+			break;
+		}
 	}
 
-	private void loadAssets() {
+	private void loadMenu() {
+		app.assets.load("img/menuPack.atlas", TextureAtlas.class);
+		app.assets.load("sound/select1.wav", Sound.class);
+		
+	}
+
+	private void loadPlay() {
 		app.assets.load("img/villagePack.atlas", TextureAtlas.class);
 		//sound
 		app.assets.load("sound/hit1.wav", Sound.class);
+		app.assets.load("sound/select1.wav", Sound.class);
+		app.assets.load("sound/lazer1.wav", Sound.class);
 	}
 	
 	private void update(float delta) {
 		app.assets.update();
 		if (app.assets.getProgress() >= 1) {
-			app.setScreen(app.playScreen);
+			switch (load) {
+			case MENU:
+				app.setScreen(app.menuScreen);
+				break;
+			case PLAY:
+				app.setScreen(app.playScreen);
+			default:
+				break;
+			}
 		}
 		
 	}
@@ -36,7 +67,7 @@ public class LoadingScreen extends GameScreen {
 	@Override
 	public void render(float delta) {
 		update(delta);
-		Gdx.gl.glClearColor(0, 1, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		app.batch.begin();
 		app.batch.end();

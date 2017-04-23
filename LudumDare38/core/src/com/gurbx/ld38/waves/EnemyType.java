@@ -1,7 +1,8 @@
 package com.gurbx.ld38.waves;
 
 public enum EnemyType {
-	BUG (5, 1, 25, 1, false, false, 15, "bug", 4);
+	BUG (5, 1, 25, 1, false, false, 15, "bug", 4),
+	BIGGER_BUG (15, 2, 15, 1, false, false, 15, "biggerBug", 4);
 	
 	private int health;
 	private int damage;

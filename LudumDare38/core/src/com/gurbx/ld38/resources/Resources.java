@@ -1,16 +1,20 @@
 package com.gurbx.ld38.resources;
 
 public class Resources {
+	private int maxUnits;
 	private int maxResin;
 	private int maxPollen;
 	private int pollen;
 	private int resin;
+	private int units;
 	
 	public Resources(int resin, int pollen) {
 		this.resin = resin;
 		this.pollen = pollen;
 		this.maxPollen = 100;
 		this.maxResin = 100;
+		this.maxUnits = 10;
+		this.units = 0;
 	}
 
 	public void addPollen(int amount) {
@@ -71,6 +75,23 @@ public class Resources {
 	
 	public int getMaxPollen() {
 		return maxPollen;
+	}
+	
+	public int getMaxUnits() {
+		return maxUnits;
+	}
+
+	public int getUnits() {
+		return units;
+	}
+
+	public void setUnits(int size) {
+		this.units = size;
+	}
+
+	public boolean canBuyUnit() {
+		if (units < maxUnits) return true;
+		return false;
 	}
 
 }

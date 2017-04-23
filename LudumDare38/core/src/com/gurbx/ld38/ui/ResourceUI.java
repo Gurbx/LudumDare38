@@ -14,9 +14,10 @@ public class ResourceUI implements GameInterface {
 	private final float x = 5;
 	private final float rY = Constants.UI_VIRTUAL_HEIGHT - 25;
 	private final float pY = Constants.UI_VIRTUAL_HEIGHT - 50;
+	private final float sY = Constants.UI_VIRTUAL_HEIGHT - 75;
 	private Resources resources;
-	private TextureRegion resinTex, pollenTex;
-	private Sprite resin, pollen;
+	private TextureRegion resinTex, pollenTex, unitTex;
+	private Sprite resin, pollen, units;
 	private BitmapFont font;
 
 	public ResourceUI(Resources resources, TextureAtlas atlas, BitmapFont font) {
@@ -24,10 +25,13 @@ public class ResourceUI implements GameInterface {
 		this.resources = resources;
 		resinTex = new TextureRegion(atlas.findRegion("resin"));
 		pollenTex = new TextureRegion(atlas.findRegion("pollen"));
+		unitTex = new TextureRegion(atlas.findRegion("mob"));
 		resin = new Sprite(resinTex);
 		pollen = new Sprite(pollenTex);
+		units = new Sprite(unitTex);
 		resin.setPosition(x, rY);
 		pollen.setPosition(x, pY);
+		units.setPosition(x, sY);
 	}
 
 	@Override
@@ -40,10 +44,12 @@ public class ResourceUI implements GameInterface {
 	public void render(SpriteBatch batch) {
 		resin.draw(batch);
 		pollen.draw(batch);
+		units.draw(batch);
 		
 		font.setColor(Color.WHITE);
 		font.draw(batch, "" + resources.getResin() + " / " + resources.getMaxResin(), x + 26, rY + 13);
 		font.draw(batch, "" + resources.getPollen() + " / " + resources.getMaxPollen(), x + 26, pY + 13);
+		font.draw(batch, "" + resources.getUnits() + " / " + resources.getMaxUnits(), x + 26, sY + 13);
 		
 	}
 

@@ -6,7 +6,8 @@ public enum HouseType {
 	RESIN_PUMP("Resin Pump", 2f, 5, 0, 0, "3", 25),
 	POLLEN_PUMP("Pollen Pump", 2f, 5, 0, 0, "2", 25),
 	RESIN_STORAGE("Resin Storage", 2f, 5, 0, 0, "4", 25),
-	POLLEN_STORAGE("Pollen Storage", 2f, 5, 0, 0, "5", 25);
+	POLLEN_STORAGE("Pollen Storage", 2f, 5, 0, 0, "5", 25),
+	MOB_HOUSE ("House", 2f, 5, 0, 0, "6", 25);
 	
 	private String name;
 	private float buildTime;
