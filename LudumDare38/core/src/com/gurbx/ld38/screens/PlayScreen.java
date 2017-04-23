@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.gurbx.ld38.Application;
 import com.gurbx.ld38.house.HouseHandler;
 import com.gurbx.ld38.input.Input;
+import com.gurbx.ld38.message.MessageHandler;
 import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.resources.Resources;
 import com.gurbx.ld38.screens.LoadingScreen.LoadNext;
@@ -33,6 +34,7 @@ public class PlayScreen extends GameScreen {
 	private TextureRegion bgTile;
 	private TextureRegion bg;
 	private SoundHandler sound;
+	private MessageHandler messageHandler;
 	
 	private WaveHandler waves;
 
@@ -59,6 +61,7 @@ public class PlayScreen extends GameScreen {
 		bg = villageAtlas.findRegion("background");
 		particleHandler = new ParticleEffectHandler(villageAtlas);
 		sound = new SoundHandler(app);
+		messageHandler = new MessageHandler(app, villageAtlas);
 		
 		InputMultiplexer multiPlex = new InputMultiplexer();
 		multiPlex.addProcessor(ui.getStage());
@@ -80,6 +83,7 @@ public class PlayScreen extends GameScreen {
 			app.loadingScreen.setLoad(LoadNext.GAMEOVER);
 			app.setScreen(app.loadingScreen);
 		}
+		messageHandler.update(delta);
 	}
 
 	@Override
@@ -116,6 +120,7 @@ public class PlayScreen extends GameScreen {
 		
 		app.batch.begin();
 		ui.renderOverStage(app.batch);
+		messageHandler.render(app.batch);
 		app.batch.end();
 		
 	}
@@ -154,6 +159,7 @@ public class PlayScreen extends GameScreen {
 		waves.dispse();
 		particleHandler.dispse();
 		sound.dispse();
+		messageHandler.dispse();
 		
 	}
 

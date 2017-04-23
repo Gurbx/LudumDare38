@@ -3,24 +3,43 @@ menuPack.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+mainMenu
+  rotate: false
+  xy: 1, 151
+  size: 800, 800
+  orig: 800, 800
+  offset: 0, 0
+  index: -1
 menuButton
   rotate: false
-  xy: 1, 1
+  xy: 1, 76
   size: 368, 73
   orig: 368, 73
   offset: 0, 0
   index: -1
 menuButtonPressed
   rotate: false
-  xy: 371, 1
+  xy: 1, 1
   size: 368, 73
   orig: 368, 73
   offset: 0, 0
   index: -1
 bgTile
   rotate: false
-  xy: 741, 10
+  xy: 803, 887
   size: 64, 64
   orig: 64, 64
+  offset: 0, 0
+  index: -1
+
+menuPack2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+logo
+  rotate: false
+  xy: 1, 1
+  size: 600, 340
+  orig: 600, 340
   offset: 0, 0
   index: -1

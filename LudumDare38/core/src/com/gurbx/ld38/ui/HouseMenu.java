@@ -23,8 +23,8 @@ public class HouseMenu {
 	private String pollenStorageDesc;
 	private String mobHouseDescription;
 	private int hover;
-	private float x = 55;
-	private float y = 95;
+	private float x = 170;
+	private float y = 135;
 	
 	
 	private TextureAtlas atlas;

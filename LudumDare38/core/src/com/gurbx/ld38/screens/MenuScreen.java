@@ -20,6 +20,8 @@ import com.gurbx.ld38.utils.Constants;
 public class MenuScreen extends GameScreen {
 	private TextureAtlas atlas;
 	private TextureRegion bgTile;
+	private TextureRegion logo;
+	private TextureRegion screenTex;
 	private Stage stage;
 	private Sound select;
 
@@ -34,6 +36,8 @@ public class MenuScreen extends GameScreen {
 		stage = new Stage(app.uiViewport);
 		atlas = app.assets.get("img/menuPack.atlas", TextureAtlas.class);
 		bgTile = atlas.findRegion("bgTile");
+		logo = atlas.findRegion("logo");
+		screenTex = atlas.findRegion("mainMenu");
 		initButtons();
 		select = app.assets.get("sound/select1.wav", Sound.class);
 		Gdx.input.setInputProcessor(stage);
@@ -47,7 +51,7 @@ public class MenuScreen extends GameScreen {
         style.down = skin.getDrawable("menuButtonPressed");
         
         playButton = new TextButton("PLAY", style);
-        playButton.setPosition(Constants.UI_VIRTUAL_WIDTH/2-184, Constants.UI_VIRTUAL_HEIGHT/2 - 36 - 100);
+        playButton.setPosition(Constants.UI_VIRTUAL_WIDTH/2-184, Constants.UI_VIRTUAL_HEIGHT/2 - 36 - 150);
         playButton.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -55,12 +59,6 @@ public class MenuScreen extends GameScreen {
             	app.setScreen(app.loadingScreen);
             	select.play();
             };
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            	select.play();
-            	return super.touchDown(event, x, y, pointer, button);
-            	
-            }
         });
         
         stage.addActor(playButton);
@@ -79,12 +77,14 @@ public class MenuScreen extends GameScreen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		app.batch.begin();
-		for (int i = 0; i < 13; i++) {
-			for (int j = 0; j < 13; j++) {
-				app.batch.draw(bgTile, 0 + 64 * i, 0 + 64 * j);
-			}
-			
-		}
+		app.batch.draw(screenTex, 0, 0);
+//		for (int i = 0; i < 13; i++) {
+//			for (int j = 0; j < 13; j++) {
+//				app.batch.draw(bgTile, 0 + 64 * i, 0 + 64 * j);
+//			}
+//			
+//		}
+//		app.batch.draw(logo, Constants.UI_VIRTUAL_WIDTH/2-logo.getRegionWidth()/2, Constants.UI_VIRTUAL_HEIGHT/2 - logo.getRegionHeight()/2 + 120);
 		app.batch.end();
 		
 		stage.draw();

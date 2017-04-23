@@ -31,11 +31,14 @@ public class MobHandler implements GameInterface {
 		mobs = new ArrayList<Mob>();
 		
 		//Starting mobs
-		mobs.add(new Mob(new Vector2(380, 410), MobType.SOLIDER, atlas));
-		mobs.add(new Mob(new Vector2(400, 400), MobType.SOLIDER, atlas));
-		mobs.add(new Mob(new Vector2(420, 390), MobType.SOLIDER, atlas));
-		mobs.add(new Mob(new Vector2(400, 420), MobType.ARCHER, atlas));
-		mobs.add(new Mob(new Vector2(380, 420), MobType.ARCHER, atlas));
+		float x = 400;
+		float y = 350;
+		float md = 15f;
+		mobs.add(new Mob(new Vector2(x + md, y), MobType.SOLIDER, atlas));
+		mobs.add(new Mob(new Vector2(x - md, y), MobType.SOLIDER, atlas));
+		mobs.add(new Mob(new Vector2(x - md, y + md), MobType.SOLIDER, atlas));
+		mobs.add(new Mob(new Vector2(x+ md, y -md), MobType.ARCHER, atlas));
+		mobs.add(new Mob(new Vector2(x, y), MobType.ARCHER, atlas));
 		
 		selectedMobs = new ArrayList<Mob>();
 		random = new Random();

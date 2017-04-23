@@ -5,434 +5,441 @@ filter: Nearest,Nearest
 repeat: none
 background
   rotate: false
-  xy: 1, 223
+  xy: 1, 219
   size: 800, 800
   orig: 800, 800
   offset: 0, 0
   index: -1
 uiBar
   rotate: false
-  xy: 1, 155
-  size: 700, 66
-  orig: 700, 66
+  xy: 1, 117
+  size: 500, 100
+  orig: 500, 100
+  offset: 0, 0
+  index: -1
+messageBox
+  rotate: false
+  xy: 503, 87
+  size: 388, 130
+  orig: 388, 130
   offset: 0, 0
   index: -1
 bgTile
   rotate: false
-  xy: 803, 959
+  xy: 803, 955
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 houseButton1
   rotate: false
-  xy: 1, 97
+  xy: 1, 59
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButton2
   rotate: false
-  xy: 703, 165
+  xy: 803, 897
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButton3
   rotate: false
-  xy: 803, 901
+  xy: 869, 963
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButton4
   rotate: false
-  xy: 869, 967
+  xy: 1, 1
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButton5
   rotate: false
-  xy: 1, 39
+  xy: 59, 59
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButton6
   rotate: false
-  xy: 59, 97
+  xy: 803, 839
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButtonOver1
   rotate: false
-  xy: 803, 843
+  xy: 927, 963
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButtonOver2
   rotate: false
-  xy: 927, 967
+  xy: 59, 1
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButtonOver3
   rotate: false
-  xy: 59, 39
+  xy: 117, 59
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButtonOver4
   rotate: false
-  xy: 117, 97
+  xy: 803, 781
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButtonOver5
   rotate: false
-  xy: 803, 785
+  xy: 117, 1
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButtonOver6
   rotate: false
-  xy: 117, 39
+  xy: 175, 59
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButtonPressed1
   rotate: false
-  xy: 175, 97
+  xy: 803, 723
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseButtonPressed2
   rotate: false
-  xy: 175, 97
+  xy: 803, 723
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 mobButtonPressed1
   rotate: false
-  xy: 175, 97
+  xy: 803, 723
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 mobButton1
   rotate: false
-  xy: 803, 727
+  xy: 175, 1
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 mobButton2
   rotate: false
-  xy: 175, 39
+  xy: 233, 59
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 mobButton3
   rotate: false
-  xy: 233, 97
+  xy: 803, 665
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 mobButton4
   rotate: false
-  xy: 803, 669
+  xy: 233, 1
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 houseBuild4
   rotate: false
-  xy: 761, 181
+  xy: 291, 75
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 houseFinal4
   rotate: false
-  xy: 233, 55
+  xy: 803, 623
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 housePlaced4
   rotate: false
-  xy: 291, 113
+  xy: 291, 33
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 houseBuild1
   rotate: false
-  xy: 1, 5
+  xy: 985, 987
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 houseBuild5
   rotate: false
-  xy: 985, 991
+  xy: 333, 83
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 houseDamaged1
   rotate: false
-  xy: 803, 635
+  xy: 803, 589
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 houseFinal1
   rotate: false
-  xy: 333, 121
+  xy: 333, 49
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 houseFinal5
   rotate: false
-  xy: 35, 5
+  xy: 367, 83
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 housePlaced1
   rotate: false
-  xy: 803, 601
+  xy: 803, 555
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 housePlaced5
   rotate: false
-  xy: 367, 121
+  xy: 367, 49
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 biggerBug1
   rotate: false
-  xy: 837, 637
+  xy: 291, 1
   size: 20, 30
   orig: 20, 30
   offset: 0, 0
   index: -1
 biggerBug2
   rotate: false
-  xy: 69, 7
+  xy: 401, 85
   size: 20, 30
   orig: 20, 30
   offset: 0, 0
   index: -1
 biggerBug3
   rotate: false
-  xy: 803, 569
+  xy: 803, 523
   size: 20, 30
   orig: 20, 30
   offset: 0, 0
   index: -1
 biggerBug4
   rotate: false
-  xy: 401, 123
+  xy: 401, 53
   size: 20, 30
   orig: 20, 30
   offset: 0, 0
   index: -1
 houseBuild6
   rotate: false
-  xy: 91, 13
+  xy: 423, 91
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 houseFinal6
   rotate: false
-  xy: 423, 129
+  xy: 423, 65
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 housePlaced6
   rotate: false
-  xy: 117, 13
+  xy: 449, 91
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
 houseBuild2
   rotate: false
-  xy: 985, 967
+  xy: 985, 963
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 houseBuild3
   rotate: false
-  xy: 449, 131
+  xy: 449, 67
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 houseDamaged2
   rotate: false
-  xy: 143, 15
+  xy: 475, 93
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 houseFinal2
   rotate: false
-  xy: 143, 15
+  xy: 475, 93
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 houseFinal3
   rotate: false
-  xy: 473, 131
+  xy: 803, 499
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 housePlaced2
   rotate: false
-  xy: 167, 15
+  xy: 803, 475
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 housePlaced3
   rotate: false
-  xy: 497, 131
+  xy: 803, 451
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 houseDamaged3
   rotate: false
-  xy: 837, 617
+  xy: 313, 13
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 pollen
   rotate: false
-  xy: 803, 551
+  xy: 333, 31
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 resin
   rotate: false
-  xy: 191, 21
+  xy: 803, 433
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 bug1
   rotate: false
-  xy: 275, 79
+  xy: 845, 647
   size: 12, 16
   orig: 12, 16
   offset: 0, 0
   index: -1
 bug2
   rotate: false
-  xy: 521, 137
+  xy: 333, 13
   size: 12, 16
   orig: 12, 16
   offset: 0, 0
   index: -1
 bug3
   rotate: false
-  xy: 803, 533
+  xy: 351, 31
   size: 12, 16
   orig: 12, 16
   offset: 0, 0
   index: -1
 bug4
   rotate: false
-  xy: 209, 21
+  xy: 803, 415
   size: 12, 16
   orig: 12, 16
   offset: 0, 0
   index: -1
 mobArcher
   rotate: false
-  xy: 91, 1
+  xy: 423, 53
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 mobWarlock
   rotate: false
-  xy: 103, 1
+  xy: 825, 543
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 mobWizzard
   rotate: false
-  xy: 115, 1
+  xy: 313, 1
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 mob
   rotate: false
-  xy: 703, 155
+  xy: 1009, 977
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 selection
   rotate: false
-  xy: 1019, 1019
+  xy: 1019, 1015
   size: 4, 4
   orig: 4, 4
   offset: 0, 0
   index: -1
 simpleParticle
   rotate: false
-  xy: 1019, 1013
+  xy: 1019, 1009
   size: 4, 4
   orig: 4, 4
   offset: 0, 0
   index: -1
 spell
   rotate: false
-  xy: 861, 951
+  xy: 861, 947
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 spell2
   rotate: false
-  xy: 869, 959
+  xy: 869, 955
   size: 6, 6
   orig: 6, 6
   offset: 0, 0
   index: -1
 spear
   rotate: false
-  xy: 761, 175
+  xy: 837, 617
   size: 1, 4
   orig: 1, 4
   offset: 0, 0

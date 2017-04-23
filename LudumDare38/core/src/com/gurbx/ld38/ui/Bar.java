@@ -15,7 +15,7 @@ public class Bar implements GameInterface {
 	public Bar(TextureAtlas atlas) {
 		barTex = new TextureRegion(atlas.findRegion("uiBar"));
 		bar = new Sprite(barTex);
-		bar.setPosition(Constants.UI_VIRTUAL_WIDTH/2 - barTex.getRegionWidth()/2, 5);
+		bar.setPosition(Constants.UI_VIRTUAL_WIDTH/2 - barTex.getRegionWidth()/2, 0);
 		active = true;
 	}
 

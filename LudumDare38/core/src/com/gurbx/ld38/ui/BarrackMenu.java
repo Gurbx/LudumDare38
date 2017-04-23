@@ -25,8 +25,8 @@ public class BarrackMenu {
 	private String wizzardDescription;
 	private String warlockDesc;
 	private int hover;
-	private float x = 55;
-	private float y = 95;
+	private float x = 170;
+	private float y = 135;
 	
 	
 	private float buttonX = 56; 
