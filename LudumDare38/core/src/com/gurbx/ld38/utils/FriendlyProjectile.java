@@ -9,8 +9,8 @@ public class FriendlyProjectile extends Projectile {
 	private ArrayList<Enemy> enemies;
 	
 	public FriendlyProjectile(float x, float y, float targetX, float targetY, float speed, 
-			TextureRegion texture, ArrayList<Enemy> enemies, int damage) {
-		super(x, y, targetX, targetY, speed, texture, damage);
+			TextureRegion texture, ArrayList<Enemy> enemies, int damage, ProjectileType type) {
+		super(x, y, targetX, targetY, speed, texture, damage, type);
 		this.enemies = enemies;
 	}
 	
@@ -23,6 +23,9 @@ public class FriendlyProjectile extends Projectile {
 	private void checkCollision() {
 		for (int i = 0; i < enemies.size(); i++) {
 			if (hitsTarget(enemies.get(i).getPosition().x, enemies.get(i).getPosition().y)) {
+				if (type == ProjectileType.Spell) {
+					ParticleEffectHandler.addSpellEffect(x, y);
+				}
 				enemies.get(i).damage(damage);
 				shouldRemove = true;
 			}

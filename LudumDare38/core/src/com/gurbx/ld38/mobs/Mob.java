@@ -73,7 +73,7 @@ public class Mob implements Target {
 	       move = new Animation(1/16f, moveFrames);  
 	       currentAnimation = move;
 	       
-	       projectileTex = new TextureRegion(atlas.findRegion("spear"));
+	       projectileTex = new TextureRegion(atlas.findRegion(type.getProjectilePath()));
 	}
 
 	public void moveTo(float x, float y) {
@@ -122,11 +122,11 @@ public class Mob implements Target {
 			}
 		}
 		
-		if (target != null) {
+		if (target != null && type.isRanged()) {
 			if (target.isDead() == false && canAttack) {
 				MobProjectileHandler.addProjectile(
 						new FriendlyProjectile(position.x, position.y, target.getPosition().x, target.getPosition().y,
-								100, projectileTex, enemies, type.getDamage()));
+								type.getProjectileSpeed(), projectileTex, enemies, type.getDamage(), type.getProjectileType()));
 				canAttack = false;
 				attackTimer = type.getAttackSpeed();
 			}

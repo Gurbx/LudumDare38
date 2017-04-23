@@ -16,6 +16,8 @@ import com.gurbx.ld38.utils.Constants;
 import com.gurbx.ld38.utils.FloatingText.TextType;
 import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.GameInterface;
+import com.gurbx.ld38.utils.ParticleEffectHandler;
+import com.gurbx.ld38.utils.SoundHandler;
 import com.gurbx.ld38.utils.Target;
 
 public class Enemy implements GameInterface, Target {
@@ -173,6 +175,8 @@ public class Enemy implements GameInterface, Target {
 	}
 	
 	public void damage(int damage) {
+		ParticleEffectHandler.addBloodEffect(position.x + width/2, position.y + height/2);
+		if (onScreen()) SoundHandler.playHit();
 		FloatingTextHandler.addText("" + damage, position.x - width/2, position.y - width/2 + 10, 200, 1f,
 				Color.RED, TextType.BOUNCE);
 		this.health -= damage;
@@ -180,6 +184,14 @@ public class Enemy implements GameInterface, Target {
 			health = 0;
 			shouldRemove = true;
 		}
+	}
+
+	private boolean onScreen() {
+		if (position.x >= 0 && position.x <= Constants.VIRTUAL_WIDTH &&
+				position.y >= 0 && position.y <= Constants.VIRTUAL_HEIGHT) {
+			return true;
+		}
+		return false;
 	}
 	
 	

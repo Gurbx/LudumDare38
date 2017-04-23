@@ -1,7 +1,9 @@
 package com.gurbx.ld38.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.gurbx.ld38.Application;
 
@@ -19,6 +21,8 @@ public class LoadingScreen extends GameScreen {
 
 	private void loadAssets() {
 		app.assets.load("img/villagePack.atlas", TextureAtlas.class);
+		//sound
+		app.assets.load("sound/hit1.wav", Sound.class);
 	}
 	
 	private void update(float delta) {

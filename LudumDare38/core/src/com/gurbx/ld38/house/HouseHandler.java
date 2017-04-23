@@ -118,6 +118,10 @@ public class HouseHandler implements GameInterface {
 			resources.removeResin(type.getCost());
 			placedHouse = new ResinPump(mouseX, mouseY, type, atlas, resources);
 			break;
+		case RESIN_STORAGE:
+			resources.removeResin(type.getCost());
+			placedHouse = new ResinPump(mouseX, mouseY, type, atlas, resources);
+			break;
 			
 
 		default:

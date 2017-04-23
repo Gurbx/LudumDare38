@@ -4,19 +4,30 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.gurbx.ld38.house.Barracks;
+import com.gurbx.ld38.house.HouseType;
 import com.gurbx.ld38.mobs.Mob;
 import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.mobs.MobType;
 import com.gurbx.ld38.resources.Resources;
 
 public class BarrackMenu {
+	private String soliderDescription;
+	private String arhcerDescription;
+	private String wizzardDescription;
+	private int hover;
+	private float x = 55;
+	private float y = 95;
+	
+	
 	private float buttonX = 56; 
 	private float buttonY = 10;
 	private float modifier = 64;
@@ -34,10 +45,20 @@ public class BarrackMenu {
 		this.resources = resources;
 		initButtons(stage);
 		setActive(false, null);
+		initDescriptions();
+		hover = 0;
+		
+	}
+	
+	private void initDescriptions() {
+		soliderDescription = "Basic solider unit who chases down his enemies and beats them up";
+		arhcerDescription = "Throws sticks on anyone who dares to cross him";
+		wizzardDescription = "He's a wizzard!";
+		
 	}
 	
 	private void initButtons(Stage stage) {
-		mobButton = new ImageButton[2];
+		mobButton = new ImageButton[3];
 		buttonX = 56; 
 		buttonY = 10;
         Skin skin = new Skin(atlas);
@@ -53,6 +74,12 @@ public class BarrackMenu {
         style2.imageDown = skin.getDrawable("mobButtonPressed1");
         mobButton[1] = new ImageButton(style2);
         
+        ImageButton.ImageButtonStyle style3 = new ImageButton.ImageButtonStyle();
+        style3.imageUp = skin.getDrawable("mobButton1");
+        style3.imageOver = skin.getDrawable("mobButton1");
+        style3.imageDown = skin.getDrawable("mobButtonPressed1");
+        mobButton[2] = new ImageButton(style3);
+        
         
         //Solider
         mobButton[0].addListener( new ClickListener() {
@@ -63,10 +90,18 @@ public class BarrackMenu {
             	if (barracks.canSpawnMob(MobType.SOLIDER) == false) return;
             	mobHandler.buyMob(MobType.SOLIDER);
             	barracks.spawnMob(MobType.SOLIDER);
-            	
-//            	houseHandler.placeNewHouse(HouseType.BASIC);
-//            	mobHandler.addMob(new Mob(new Vector2(spawmX,spawnY), MobType.SOLIDER, atlas));
             };
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	super.enter(event, x, y, pointer, fromActor);
+            	hover = 1;
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+            	super.exit(event, x, y, pointer, toActor);
+            	hover = 0;
+            }
+            
         });
         
         //Archer
@@ -78,10 +113,39 @@ public class BarrackMenu {
             	if (barracks.canSpawnMob(MobType.ARCHER) == false) return;
             	mobHandler.buyMob(MobType.ARCHER);
             	barracks.spawnMob(MobType.ARCHER);
-            	
-//            	houseHandler.placeNewHouse(HouseType.BASIC);
-//            	mobHandler.addMob(new Mob(new Vector2(spawmX,spawnY), MobType.SOLIDER, atlas));
             };
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	super.enter(event, x, y, pointer, fromActor);
+            	hover = 2;
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+            	super.exit(event, x, y, pointer, toActor);
+            	hover = 0;
+            }
+        });
+        
+        //Wizzard
+        mobButton[2].addListener( new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+            	if (!active) return;
+            	if (mobHandler.canBuyMob(MobType.WIZZARD) == false) return;
+            	if (barracks.canSpawnMob(MobType.WIZZARD) == false) return;
+            	mobHandler.buyMob(MobType.WIZZARD);
+            	barracks.spawnMob(MobType.WIZZARD);
+            };
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	super.enter(event, x, y, pointer, fromActor);
+            	hover = 3;
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+            	super.exit(event, x, y, pointer, toActor);
+            	hover = 0;
+            }
         });
         
     
@@ -99,7 +163,10 @@ public class BarrackMenu {
 		}
 	}
 	
-	public void render(SpriteBatch batch, BitmapFont font) {
+	public void render(SpriteBatch batch, BitmapFont font, TextureRegion pollenTex) {
+		renderDescription(batch, font, pollenTex);
+		
+		
 		if (barracks != null) {
 			font.setColor(Color.WHITE);
 			if (barracks.getMobQueueType() != null) {
@@ -110,12 +177,51 @@ public class BarrackMenu {
 				case ARCHER:
 					font.draw(batch, "" + barracks.getMobQueueSize(), buttonX + 45 + modifier , buttonY+55);
 					break;
+				case WIZZARD:
+					font.draw(batch, "" + barracks.getMobQueueSize(), buttonX + 45 + modifier * 2 , buttonY+55);
+					break;
 
 				default:
 					break;
 				}
 			}
 		}
+	}
+
+	private void renderDescription(SpriteBatch batch, BitmapFont font, TextureRegion pollenTex) {
+		String header = "";
+		String description = "";
+		MobType type = MobType.SOLIDER;
+		//renderDescription
+		switch (hover) {
+		case 1:
+			type = MobType.SOLIDER;
+			header = type.getName();
+			description = soliderDescription;
+			break;
+		case 2:
+			type = MobType.ARCHER;
+			header = type.getName();
+			description = arhcerDescription;
+			break;
+		case 3:
+			type = MobType.WIZZARD;
+			header = type.getName();
+			description = wizzardDescription;
+			break;
+
+		default:
+			break;
+		}
+		
+		if (hover != 0) {
+			batch.draw(pollenTex, x + 80, y - 15);
+			font.draw(batch, "Cost: " + type.getCost(), x, y);
+			font.draw(batch, "Spawn Time: " + type.getSpawnTime() + " s", x + 150, y);
+			font.draw(batch, header, x, y + 56);
+			font.draw(batch, description, x, y + 38);
+		}
+		
 	}
 
 }

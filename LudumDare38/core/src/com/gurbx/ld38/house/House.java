@@ -47,7 +47,7 @@ public class House implements Target {
 		this.placeTex = atlas.findRegion("housePlaced" + type.getPath());
 		this.buildTex = atlas.findRegion("houseBuild" + type.getPath());
 		this.finalTex = atlas.findRegion("houseFinal" + type.getPath());
-		this.damagedTex = atlas.findRegion("houseDamaged" + type.getPath());
+//		this.damagedTex = atlas.findRegion("houseDamaged" + type.getPath());
 		
 		this.width = placeTex.getRegionWidth();
 		this.height = placeTex.getRegionHeight();
@@ -58,8 +58,8 @@ public class House implements Target {
 		this.buildSprite.setPosition(x, y);
 		this.finalSprite = new Sprite(finalTex);
 		this.finalSprite.setPosition(x, y);
-		this.damagedSprite = new Sprite(damagedTex);
-		this.damagedSprite.setPosition(x, y);
+//		this.damagedSprite = new Sprite(damagedTex);
+//		this.damagedSprite.setPosition(x, y);
 		
 		this.currentSprite = placedSprite;
 		this.currentSprite.setPosition(x, y);

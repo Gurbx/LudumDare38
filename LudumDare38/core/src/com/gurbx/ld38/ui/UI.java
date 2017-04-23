@@ -77,7 +77,8 @@ public class UI implements GameInterface {
 	}
 	
 	public void renderOverStage(SpriteBatch batch) {
-		barrackMenu.render(batch, app.font);
+		barrackMenu.render(batch, app.font, resourceUI.getPollenTex());
+		houseMenu.render(batch, app.font, resourceUI.getResinTex());
 	}
 
 	@Override

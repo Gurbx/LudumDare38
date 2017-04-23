@@ -15,6 +15,7 @@ import com.gurbx.ld38.ui.UI;
 import com.gurbx.ld38.utils.Constants;
 import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.ParticleEffectHandler;
+import com.gurbx.ld38.utils.SoundHandler;
 import com.gurbx.ld38.waves.Enemy;
 import com.gurbx.ld38.waves.EnemyType;
 import com.gurbx.ld38.waves.WaveHandler;
@@ -27,8 +28,9 @@ public class PlayScreen extends GameScreen {
 	private UI ui;
 	private FloatingTextHandler floatingTextHandler;
 	private ParticleEffectHandler particleHandler;
-	
+	private TextureAtlas villageAtlas;
 	private TextureRegion bgTile;
+	private SoundHandler sound;
 	
 	private WaveHandler waves;
 
@@ -38,8 +40,8 @@ public class PlayScreen extends GameScreen {
 
 	@Override
 	public void show() {
-		TextureAtlas villageAtlas = app.assets.get("img/villagePack.atlas", TextureAtlas.class);
-		resources = new Resources(100, 50);
+		villageAtlas = app.assets.get("img/villagePack.atlas", TextureAtlas.class);
+		resources = new Resources(100, 100);
 //		mob = new Mob(new Vector2(100, 100), MobType.SOLIDER, villageAtlas);
 		this.mobHandler = new MobHandler(villageAtlas, resources);
 		this.houseHandler = new HouseHandler(villageAtlas, resources, mobHandler);
@@ -53,6 +55,7 @@ public class PlayScreen extends GameScreen {
 		
 		bgTile = villageAtlas.findRegion("bgTile");
 		particleHandler = new ParticleEffectHandler(villageAtlas);
+		sound = new SoundHandler(app);
 		
 		InputMultiplexer multiPlex = new InputMultiplexer();
 		multiPlex.addProcessor(ui.getStage());
@@ -67,6 +70,7 @@ public class PlayScreen extends GameScreen {
 		waves.update(delta);
 		particleHandler.update(delta);
 		ui.update(delta);
+		sound.update(delta);
 		floatingTextHandler.update(delta);
 	}
 
@@ -83,10 +87,11 @@ public class PlayScreen extends GameScreen {
 			}
 			
 		}
+		sound.render(app.batch);
 		houseHandler.render(app.batch);
 		waves.render(app.batch);
 		mobHandler.render(app.batch);
-		particleHandler.render(app.batch);
+		particleHandler.render(app.batch, delta);
 		floatingTextHandler.render(app.batch, app.font);
 		app.batch.end();
 		
@@ -132,12 +137,14 @@ public class PlayScreen extends GameScreen {
 
 	@Override
 	public void dispose() {
+		villageAtlas.dispose();
 		houseHandler.dispse();
 		mobHandler.dispse();
 		floatingTextHandler.dispose();
 		ui.dispse();
 		waves.dispse();
 		particleHandler.dispse();
+		sound.dispse();
 		
 	}
 
