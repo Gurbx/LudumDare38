@@ -23,8 +23,15 @@ public class FriendlyProjectile extends Projectile {
 	private void checkCollision() {
 		for (int i = 0; i < enemies.size(); i++) {
 			if (hitsTarget(enemies.get(i).getPosition().x, enemies.get(i).getPosition().y)) {
-				if (type == ProjectileType.Spell) {
+				switch (type) {
+				case WIZZARDSPELL:
 					ParticleEffectHandler.addSpellEffect(x, y);
+					break;
+				case WARLOCKSPELL:
+					ParticleEffectHandler.addWarlockSpell(x, y);
+					break;
+				default:
+					break;
 				}
 				enemies.get(i).damage((int) (damage + Math.random() * 2));
 				shouldRemove = true;

@@ -27,7 +27,7 @@ public class ResinPump extends House {
 		}
 		if (timer < 0) {
 			generateResin();
-			FloatingTextHandler.addText("" +amountGenerated, this.x - 6, this.y + 10, 15, 1f, Color.ORANGE, TextType.FLOAT);
+			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y + 10, 15, 1f, Color.ORANGE, TextType.FLOAT);
 			timer = (float) (cooldown + Math.random()*1);
 		}
 	}

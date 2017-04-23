@@ -51,10 +51,16 @@ public class MenuScreen extends GameScreen {
         playButton.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-            	select.play();
             	app.loadingScreen.setLoad(LoadNext.PLAY);
             	app.setScreen(app.loadingScreen);
+            	select.play();
             };
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            	select.play();
+            	return super.touchDown(event, x, y, pointer, button);
+            	
+            }
         });
         
         stage.addActor(playButton);

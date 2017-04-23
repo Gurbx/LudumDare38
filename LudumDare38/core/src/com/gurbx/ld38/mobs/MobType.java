@@ -3,9 +3,10 @@ package com.gurbx.ld38.mobs;
 import com.gurbx.ld38.utils.ProjectileType;
 
 public enum MobType {
-	SOLIDER("Solider", 20, 3, 1f, 25f, false, 80, 100, "mob", "spear" ,10, 2f, 1,1,1 , ProjectileType.Standard),
-	ARCHER("Archer", 10, 1, 1f, 25f, true, 280, 100, "mobArcher", "spear", 20, 4f, 1,1,1, ProjectileType.Standard ),
-	WIZZARD("Wizzard", 5, 20, 4f, 25f, true, 350, 200, "mobWizzard", "spell", 250, 10f, 1,1,1, ProjectileType.Spell );
+	SOLIDER("Solider", 20, 3, 1f, 25f, false, 80, 100, "mob", "spear" ,10, 			7.5f, 1,1,1 , ProjectileType.STANDARD),
+	ARCHER("Archer", 10, 1, 1f, 25f, true, 280, 100, "mobArcher", "spear", 25,		 15f, 1,1,1, ProjectileType.STANDARD ),
+	WIZZARD("Wizzard", 5, 15, 4f, 25f, true, 350, 200, "mobWizzard", "spell", 150, 	40f, 1,1,1, ProjectileType.WIZZARDSPELL ),
+	WARLOCK("Warlock", 5, 20, 2f, 25f, true, 350, 200, "mobWarlock", "spell2", 300, 	60f, 1,1,1, ProjectileType.WARLOCKSPELL );
 	
 	private String name;
 	private int health;

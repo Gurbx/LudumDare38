@@ -23,6 +23,7 @@ public class BarrackMenu {
 	private String soliderDescription;
 	private String arhcerDescription;
 	private String wizzardDescription;
+	private String warlockDesc;
 	private int hover;
 	private float x = 55;
 	private float y = 95;
@@ -54,12 +55,13 @@ public class BarrackMenu {
 		soliderDescription = "Basic solider unit who chases down his enemies and beats them up";
 		arhcerDescription = "Throws sticks on anyone who dares to cross him";
 		wizzardDescription = "He's a wizzard!";
+		warlockDesc = "He might be evil";
 		
 	}
 	
 	private void initButtons(Stage stage) {
-		mobButton = new ImageButton[3];
-		buttonX = 56; 
+		mobButton = new ImageButton[4];
+		buttonX = 264; 
 		buttonY = 10;
         Skin skin = new Skin(atlas);
         ImageButton.ImageButtonStyle style1 = new ImageButton.ImageButtonStyle();
@@ -69,16 +71,22 @@ public class BarrackMenu {
         mobButton[0] = new ImageButton(style1);
         
         ImageButton.ImageButtonStyle style2 = new ImageButton.ImageButtonStyle();
-        style2.imageUp = skin.getDrawable("mobButton1");
-        style2.imageOver = skin.getDrawable("mobButton1");
+        style2.imageUp = skin.getDrawable("mobButton2");
+        style2.imageOver = skin.getDrawable("mobButton2");
         style2.imageDown = skin.getDrawable("mobButtonPressed1");
         mobButton[1] = new ImageButton(style2);
         
         ImageButton.ImageButtonStyle style3 = new ImageButton.ImageButtonStyle();
-        style3.imageUp = skin.getDrawable("mobButton1");
-        style3.imageOver = skin.getDrawable("mobButton1");
+        style3.imageUp = skin.getDrawable("mobButton3");
+        style3.imageOver = skin.getDrawable("mobButton3");
         style3.imageDown = skin.getDrawable("mobButtonPressed1");
         mobButton[2] = new ImageButton(style3);
+        
+        ImageButton.ImageButtonStyle style4 = new ImageButton.ImageButtonStyle();
+        style4.imageUp = skin.getDrawable("mobButton4");
+        style4.imageOver = skin.getDrawable("mobButton4");
+        style4.imageDown = skin.getDrawable("mobButtonPressed1");
+        mobButton[3] = new ImageButton(style4);
         
         
         //Solider
@@ -87,7 +95,7 @@ public class BarrackMenu {
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
             	if (mobHandler.canBuyMob(MobType.SOLIDER) == false) return;
-            	if (barracks.canSpawnMob(MobType.SOLIDER) == false) return;
+            	if (barracks.canSpawnMob(MobType.SOLIDER, resources) == false) return;
             	mobHandler.buyMob(MobType.SOLIDER);
             	barracks.spawnMob(MobType.SOLIDER);
             };
@@ -110,7 +118,7 @@ public class BarrackMenu {
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
             	if (mobHandler.canBuyMob(MobType.ARCHER) == false) return;
-            	if (barracks.canSpawnMob(MobType.ARCHER) == false) return;
+            	if (barracks.canSpawnMob(MobType.ARCHER, resources) == false) return;
             	mobHandler.buyMob(MobType.ARCHER);
             	barracks.spawnMob(MobType.ARCHER);
             };
@@ -132,7 +140,7 @@ public class BarrackMenu {
             public void clicked(InputEvent event, float x, float y) {
             	if (!active) return;
             	if (mobHandler.canBuyMob(MobType.WIZZARD) == false) return;
-            	if (barracks.canSpawnMob(MobType.WIZZARD) == false) return;
+            	if (barracks.canSpawnMob(MobType.WIZZARD, resources) == false) return;
             	mobHandler.buyMob(MobType.WIZZARD);
             	barracks.spawnMob(MobType.WIZZARD);
             };
@@ -148,6 +156,27 @@ public class BarrackMenu {
             }
         });
         
+        //Warlock
+        mobButton[3].addListener( new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+            	if (!active) return;
+            	if (mobHandler.canBuyMob(MobType.WARLOCK) == false) return;
+            	if (barracks.canSpawnMob(MobType.WARLOCK, resources) == false) return;
+            	mobHandler.buyMob(MobType.WARLOCK);
+            	barracks.spawnMob(MobType.WARLOCK);
+            };
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	super.enter(event, x, y, pointer, fromActor);
+            	hover = 4;
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+            	super.exit(event, x, y, pointer, toActor);
+            	hover = 0;
+            }
+        });
     
         for (int i = 0; i < mobButton.length; i++) {
             mobButton[i].setPosition(buttonX + modifier * i, buttonY);
@@ -180,6 +209,9 @@ public class BarrackMenu {
 				case WIZZARD:
 					font.draw(batch, "" + barracks.getMobQueueSize(), buttonX + 45 + modifier * 2 , buttonY+55);
 					break;
+				case WARLOCK:
+					font.draw(batch, "" + barracks.getMobQueueSize(), buttonX + 45 + modifier * 3 , buttonY+55);
+					break;
 
 				default:
 					break;
@@ -208,6 +240,11 @@ public class BarrackMenu {
 			type = MobType.WIZZARD;
 			header = type.getName();
 			description = wizzardDescription;
+			break;
+		case 4:
+			type = MobType.WARLOCK;
+			header = type.getName();
+			description = warlockDesc;
 			break;
 
 		default:

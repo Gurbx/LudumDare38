@@ -31,6 +31,7 @@ public class PlayScreen extends GameScreen {
 	private ParticleEffectHandler particleHandler;
 	private TextureAtlas villageAtlas;
 	private TextureRegion bgTile;
+	private TextureRegion bg;
 	private SoundHandler sound;
 	
 	private WaveHandler waves;
@@ -55,6 +56,7 @@ public class PlayScreen extends GameScreen {
 		mobHandler.setEnemies(waves.getEnemies());
 		
 		bgTile = villageAtlas.findRegion("bgTile");
+		bg = villageAtlas.findRegion("background");
 		particleHandler = new ParticleEffectHandler(villageAtlas);
 		sound = new SoundHandler(app);
 		
@@ -106,6 +108,7 @@ public class PlayScreen extends GameScreen {
 		input.renderSelection(app.shapeRenderer);
 		
 		app.batch.begin();
+		app.batch.draw(bg, 0, 0);
 		ui.render(app.batch);
 		app.batch.end();
 		

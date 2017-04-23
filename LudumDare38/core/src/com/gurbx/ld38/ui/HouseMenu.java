@@ -52,7 +52,8 @@ public class HouseMenu {
 
 	private void initButtons(Stage stage, TextureAtlas atlas) {
 		houseButton = new ImageButton[6];
-		float buttonX = 56; 
+//		float buttonX = 56; 
+		float buttonX = 200;
 		float buttonY = 10;
         Skin skin = new Skin(atlas);
         ImageButton.ImageButtonStyle style1 = new ImageButton.ImageButtonStyle();
@@ -66,23 +67,23 @@ public class HouseMenu {
         style2.imageDown = skin.getDrawable("houseButtonPressed2");
         
         ImageButton.ImageButtonStyle style3 = new ImageButton.ImageButtonStyle();
-        style3.imageUp = skin.getDrawable("houseButton2");
-        style3.imageOver = skin.getDrawable("houseButtonOver2");
+        style3.imageUp = skin.getDrawable("houseButton3");
+        style3.imageOver = skin.getDrawable("houseButtonOver3");
         style3.imageDown = skin.getDrawable("houseButtonPressed2");
         
         ImageButton.ImageButtonStyle style4 = new ImageButton.ImageButtonStyle();
-        style4.imageUp = skin.getDrawable("houseButton2");
-        style4.imageOver = skin.getDrawable("houseButtonOver2");
+        style4.imageUp = skin.getDrawable("houseButton4");
+        style4.imageOver = skin.getDrawable("houseButtonOver4");
         style4.imageDown = skin.getDrawable("houseButtonPressed2");
         
         ImageButton.ImageButtonStyle style5 = new ImageButton.ImageButtonStyle();
-        style5.imageUp = skin.getDrawable("houseButton2");
-        style5.imageOver = skin.getDrawable("houseButtonOver2");
+        style5.imageUp = skin.getDrawable("houseButton5");
+        style5.imageOver = skin.getDrawable("houseButtonOver5");
         style5.imageDown = skin.getDrawable("houseButtonPressed2");
         
         ImageButton.ImageButtonStyle style6 = new ImageButton.ImageButtonStyle();
-        style6.imageUp = skin.getDrawable("houseButton2");
-        style6.imageOver = skin.getDrawable("houseButtonOver2");
+        style6.imageUp = skin.getDrawable("houseButton6");
+        style6.imageOver = skin.getDrawable("houseButtonOver6");
         style6.imageDown = skin.getDrawable("houseButtonPressed2");
 
         houseButton[0] = new ImageButton(style1);

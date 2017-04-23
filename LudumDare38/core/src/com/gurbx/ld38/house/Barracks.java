@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.gurbx.ld38.mobs.Mob;
 import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.mobs.MobType;
+import com.gurbx.ld38.resources.Resources;
 
 public class Barracks extends House {
 	private boolean spawningMob;
@@ -61,9 +62,10 @@ public class Barracks extends House {
 		}
 	}
 
-	public boolean canSpawnMob(MobType type) {
+	public boolean canSpawnMob(MobType type, Resources resources) {
 		if (placed == true && buildFinnished) {
 			if (spawningMob && this.type != type) return false;
+			if (resources.getUnits() + getMobQueueSize() >= resources.getMaxUnits()) return false;
 			return true;
 		} 
 		return false;

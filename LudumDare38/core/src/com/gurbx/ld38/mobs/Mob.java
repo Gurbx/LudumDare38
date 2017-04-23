@@ -131,7 +131,7 @@ public class Mob implements Target {
 								type.getProjectileSpeed(), projectileTex, enemies, type.getDamage(), type.getProjectileType()));
 				canAttack = false;
 				attackTimer = type.getAttackSpeed();
-				if (type.getProjectileType() == ProjectileType.Spell) {
+				if (type.getProjectileType() == ProjectileType.WIZZARDSPELL || type.getProjectileType() == ProjectileType.WARLOCKSPELL) {
 					SoundHandler.playLazer();
 				}
  			}
