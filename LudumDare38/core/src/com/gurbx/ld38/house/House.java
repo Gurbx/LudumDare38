@@ -19,7 +19,7 @@ public class House implements Target {
 	protected float width;
 	protected float height;
 	protected HouseType type;
-	private int health;
+	protected int health;
 	private boolean shouldRemove;
 	
 	protected boolean placed;

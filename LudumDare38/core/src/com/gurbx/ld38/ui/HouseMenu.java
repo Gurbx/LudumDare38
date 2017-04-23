@@ -19,6 +19,8 @@ public class HouseMenu {
 	private String barrackDescription;
 	private String resinPumpDescription;
 	private String pollenPumpDescription;
+	private String resinStorageDesc;
+	private String pollenStorageDesc;
 	private int hover;
 	private float x = 55;
 	private float y = 95;
@@ -42,11 +44,12 @@ public class HouseMenu {
 		barrackDescription = "Solider training";
 		pollenPumpDescription = "Gathers pollen";
 		resinPumpDescription = "Gathers resin";
-		
+		resinStorageDesc = "Increases the storage capacity of resin by 100"; 
+		pollenStorageDesc = "Increases the storage capacity of pollen by 100"; 
 	}
 
 	private void initButtons(Stage stage, TextureAtlas atlas) {
-		houseButton = new ImageButton[3];
+		houseButton = new ImageButton[5];
 		float buttonX = 56; 
 		float buttonY = 10;
         Skin skin = new Skin(atlas);
@@ -64,10 +67,22 @@ public class HouseMenu {
         style3.imageUp = skin.getDrawable("houseButton2");
         style3.imageOver = skin.getDrawable("houseButtonOver2");
         style3.imageDown = skin.getDrawable("houseButtonPressed2");
+        
+        ImageButton.ImageButtonStyle style4 = new ImageButton.ImageButtonStyle();
+        style4.imageUp = skin.getDrawable("houseButton2");
+        style4.imageOver = skin.getDrawable("houseButtonOver2");
+        style4.imageDown = skin.getDrawable("houseButtonPressed2");
+        
+        ImageButton.ImageButtonStyle style5 = new ImageButton.ImageButtonStyle();
+        style5.imageUp = skin.getDrawable("houseButton2");
+        style5.imageOver = skin.getDrawable("houseButtonOver2");
+        style5.imageDown = skin.getDrawable("houseButtonPressed2");
 
         houseButton[0] = new ImageButton(style1);
         houseButton[1] = new ImageButton(style2);
         houseButton[2] = new ImageButton(style3);
+        houseButton[3] = new ImageButton(style4);
+        houseButton[4] = new ImageButton(style5);
         
         
         //Standard
@@ -129,6 +144,46 @@ public class HouseMenu {
             }
         });
         
+        //Resin storage
+        houseButton[3].addListener( new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+            	if (!active) return;
+            	if (houseHandler.canPlaceHouse(HouseType.RESIN_STORAGE) == false) return;
+            	houseHandler.placeNewHouse(HouseType.RESIN_STORAGE);
+            };
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	super.enter(event, x, y, pointer, fromActor);
+            	hover = 4;
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+            	super.exit(event, x, y, pointer, toActor);
+            	hover = 0;
+            }
+        });
+        
+        //Pollen storage
+        houseButton[4].addListener( new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+            	if (!active) return;
+            	if (houseHandler.canPlaceHouse(HouseType.POLLEN_STORAGE) == false) return;
+            	houseHandler.placeNewHouse(HouseType.POLLEN_STORAGE);
+            };
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	super.enter(event, x, y, pointer, fromActor);
+            	hover = 5;
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+            	super.exit(event, x, y, pointer, toActor);
+            	hover = 0;
+            }
+        });
+        
         
         for (int i = 0; i < houseButton.length; i++) {
             houseButton[i].setPosition(buttonX + 64 * i, buttonY);
@@ -164,6 +219,16 @@ public class HouseMenu {
 			header = "Acorn";
 			description = resinPumpDescription;
 			type = HouseType.RESIN_PUMP;
+			break;
+		case 4:
+			header = "Resin Storage";
+			description = resinStorageDesc;
+			type = HouseType.RESIN_STORAGE;
+			break;
+		case 5:
+			header = "Pollen Storage";
+			description = pollenStorageDesc;
+			type = HouseType.POLLEN_STORAGE;
 			break;
 
 		default:
