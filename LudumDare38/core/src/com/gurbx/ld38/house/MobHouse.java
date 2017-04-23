@@ -8,8 +8,8 @@ public class MobHouse extends House {
 	private Resources resources;
 	private boolean storageIncreased;
 
-	public MobHouse(float x, float y, HouseType type, TextureAtlas atlas, Resources resources) {
-		super(x, y, type, atlas);
+	public MobHouse(float x, float y, HouseType type, TextureAtlas atlas, Resources resources, boolean instantPlacement) {
+		super(x, y, type, atlas, instantPlacement);
 		this.resources = resources;
 	}
 

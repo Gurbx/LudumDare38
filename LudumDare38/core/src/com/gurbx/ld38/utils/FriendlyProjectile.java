@@ -26,7 +26,7 @@ public class FriendlyProjectile extends Projectile {
 				if (type == ProjectileType.Spell) {
 					ParticleEffectHandler.addSpellEffect(x, y);
 				}
-				enemies.get(i).damage(damage);
+				enemies.get(i).damage((int) (damage + Math.random() * 2));
 				shouldRemove = true;
 			}
 		}

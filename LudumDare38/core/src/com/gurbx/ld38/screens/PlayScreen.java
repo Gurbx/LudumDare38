@@ -11,6 +11,7 @@ import com.gurbx.ld38.house.HouseHandler;
 import com.gurbx.ld38.input.Input;
 import com.gurbx.ld38.mobs.MobHandler;
 import com.gurbx.ld38.resources.Resources;
+import com.gurbx.ld38.screens.LoadingScreen.LoadNext;
 import com.gurbx.ld38.ui.UI;
 import com.gurbx.ld38.utils.Constants;
 import com.gurbx.ld38.utils.FloatingTextHandler;
@@ -72,6 +73,11 @@ public class PlayScreen extends GameScreen {
 		ui.update(delta);
 		sound.update(delta);
 		floatingTextHandler.update(delta);
+		
+		if (mobHandler.getMobs().isEmpty() && houseHandler.getHouses().isEmpty()) {
+			app.loadingScreen.setLoad(LoadNext.GAMEOVER);
+			app.setScreen(app.loadingScreen);
+		}
 	}
 
 	@Override

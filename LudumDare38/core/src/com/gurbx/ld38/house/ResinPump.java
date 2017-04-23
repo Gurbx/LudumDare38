@@ -7,13 +7,13 @@ import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.FloatingText.TextType;
 
 public class ResinPump extends House {
-	private int amountGenerated = 5;
-	private float cooldown = 0.2f;
+	private int amountGenerated = 2;
+	private float cooldown = 3f;
 	private float timer;
 	private Resources resources;
 
-	public ResinPump(float x, float y, HouseType type, TextureAtlas atlas, Resources resources) {
-		super(x, y, type, atlas);
+	public ResinPump(float x, float y, HouseType type, TextureAtlas atlas, Resources resources, boolean instantPlacement) {
+		super(x, y, type, atlas, instantPlacement);
 		this.resources = resources;
 		timer = cooldown;
 	}
@@ -27,8 +27,8 @@ public class ResinPump extends House {
 		}
 		if (timer < 0) {
 			generateResin();
-			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y + 10, 20, 4.5f, Color.ORANGE, TextType.FLOAT);
-			timer = cooldown;
+			FloatingTextHandler.addText("" +amountGenerated, this.x - 6, this.y + 10, 15, 1f, Color.ORANGE, TextType.FLOAT);
+			timer = (float) (cooldown + Math.random()*1);
 		}
 	}
 

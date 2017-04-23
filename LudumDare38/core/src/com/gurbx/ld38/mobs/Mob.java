@@ -117,7 +117,7 @@ public class Mob implements Target {
 			
 			if (target != null && type.isRanged() == false) {
 				if (target.isDead() == false && canAttack) {
-					target.damage(type.getDamage());
+					target.damage((int) (type.getDamage() + Math.random()*2));
 					canAttack = false;
 					attackTimer = type.getAttackSpeed();
 				}

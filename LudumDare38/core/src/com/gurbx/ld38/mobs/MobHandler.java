@@ -29,9 +29,14 @@ public class MobHandler implements GameInterface {
 		this.atlas = atlas;
 		this.selectionSprite = new Sprite(new TextureRegion(atlas.findRegion("selection")));
 		mobs = new ArrayList<Mob>();
-		for (int i = 0; i < 10; i++) {
-			mobs.add(new Mob(new Vector2(500, 400), MobType.SOLIDER, atlas));
-		}
+		
+		//Starting mobs
+		mobs.add(new Mob(new Vector2(380, 410), MobType.SOLIDER, atlas));
+		mobs.add(new Mob(new Vector2(400, 400), MobType.SOLIDER, atlas));
+		mobs.add(new Mob(new Vector2(420, 390), MobType.SOLIDER, atlas));
+		mobs.add(new Mob(new Vector2(400, 420), MobType.ARCHER, atlas));
+		mobs.add(new Mob(new Vector2(380, 420), MobType.ARCHER, atlas));
+		
 		selectedMobs = new ArrayList<Mob>();
 		random = new Random();
 	}

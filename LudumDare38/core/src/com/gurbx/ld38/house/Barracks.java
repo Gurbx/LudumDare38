@@ -18,8 +18,8 @@ public class Barracks extends House {
 	private float spawnTime;
 	private ArrayList<Mob> mobQueue;
 
-	public Barracks(float x, float y, HouseType type, TextureAtlas atlas, MobHandler mobHandler) {
-		super(x, y, type, atlas);
+	public Barracks(float x, float y, HouseType type, TextureAtlas atlas, MobHandler mobHandler, boolean instantPlacement) {
+		super(x, y, type, atlas, instantPlacement);
 		mobQueue = new ArrayList<Mob>();
 		spawningMob = false;
 		spawnTimer = 0;

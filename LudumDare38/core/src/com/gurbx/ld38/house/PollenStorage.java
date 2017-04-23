@@ -9,8 +9,8 @@ public class PollenStorage extends House {
 	private boolean storageIncreased;
 	
 	
-	public PollenStorage(float x, float y, HouseType type, TextureAtlas atlas, Resources resources) {
-		super(x, y, type, atlas);
+	public PollenStorage(float x, float y, HouseType type, TextureAtlas atlas, Resources resources, boolean instantPlacement) {
+		super(x, y, type, atlas, instantPlacement);
 		this.resources = resources;
 		storageIncreased = false;
 	}

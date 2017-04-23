@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.gurbx.ld38.Application;
 
 public class LoadingScreen extends GameScreen {
-	public enum LoadNext { PLAY, MENU; }
+	public enum LoadNext { PLAY, MENU, GAMEOVER; }
 	private LoadNext load;
 
 	public LoadingScreen(Application app) {
@@ -28,6 +28,9 @@ public class LoadingScreen extends GameScreen {
 			break;
 		case PLAY:
 			loadPlay();
+			break;
+		case GAMEOVER:
+			loadMenu();
 			break;
 		default:
 			break;
@@ -57,6 +60,10 @@ public class LoadingScreen extends GameScreen {
 				break;
 			case PLAY:
 				app.setScreen(app.playScreen);
+				break;
+			case GAMEOVER:
+				app.setScreen(app.gameOverScreen);
+				break;
 			default:
 				break;
 			}

@@ -13,7 +13,7 @@ import com.gurbx.ld38.utils.GameInterface;
 
 public class WaveHandler implements GameInterface {
 	private int waveNr;
-	private float time_between_waves = 5f;
+	private float time_between_waves = 50f;
 	private float timer;
 	private Random random;
 	private EnemyHandler enemies;

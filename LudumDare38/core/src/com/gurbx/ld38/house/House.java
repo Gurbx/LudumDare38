@@ -28,7 +28,7 @@ public class House implements Target {
 	protected float barWidth, barHeight = 4;
 	protected boolean buildFinnished;
 	
-	public House(float x, float y, HouseType type, TextureAtlas atlas) {
+	public House(float x, float y, HouseType type, TextureAtlas atlas, boolean instantPlacement) {
 		this.atlas = atlas;
 		this.x = x;
 		this.y = y;
@@ -39,6 +39,11 @@ public class House implements Target {
 		this.barWidth = finalTex.getRegionWidth();
 		this.buildFinnished = false;
 		this.placed = false;
+		if (instantPlacement) {
+			placed = true;
+			buildFinnished = true;
+			progress = buildTime;
+		}
 		shouldRemove = false;
 		health = type.getHealth();
 	}

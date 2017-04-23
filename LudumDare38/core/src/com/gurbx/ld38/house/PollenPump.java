@@ -8,13 +8,13 @@ import com.gurbx.ld38.utils.FloatingTextHandler;
 import com.gurbx.ld38.utils.FloatingText.TextType;
 
 public class PollenPump extends House {
-	private int amountGenerated = 5;
-	private float cooldown = 2;
+	private int amountGenerated = 2;
+	private float cooldown = 3;
 	private float timer;
 	private Resources resources;
 
-	public PollenPump(float x, float y, HouseType type, TextureAtlas atlas, Resources resources) {
-		super(x, y, type, atlas);
+	public PollenPump(float x, float y, HouseType type, TextureAtlas atlas, Resources resources, boolean instantPlacement) {
+		super(x, y, type, atlas, instantPlacement);
 		this.resources = resources;
 		timer = cooldown;
 	}
@@ -27,7 +27,7 @@ public class PollenPump extends House {
 		}
 		if (timer < 0) {
 			generatePollen();
-			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y + 10, 20, 4.5f, Color.YELLOW, TextType.FLOAT);
+			FloatingTextHandler.addText("" +amountGenerated, this.x - 3, this.y + 10, 15, 1f, Color.YELLOW, TextType.FLOAT);
 			timer = cooldown;
 		}
 	}

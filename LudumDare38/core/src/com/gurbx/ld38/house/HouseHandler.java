@@ -28,9 +28,19 @@ public class HouseHandler implements GameInterface {
 		this.atlas = atlas;
 		houses = new ArrayList<House>();
 		this.selectionSprite = new Sprite(new TextureRegion(atlas.findRegion("selection")));
-//		houses.add(new House(205, 400, HouseType.BASIC, atlas));
+		
+		//Starting houses
+		int distance = 30;
+		int x = 400;
+		int y = 440;
+		houses.add(new Barracks(x, y, HouseType.BARRACKS, atlas, mobHandler, true));
+		
+		houses.add(new ResinPump(x + distance, y + distance, HouseType.RESIN_PUMP, atlas, resources, true));
+		houses.add(new PollenPump(x - distance, y - distance, HouseType.POLLEN_PUMP, atlas, resources, true));
+		houses.add(new ResinStorage(x - distance, y + distance, HouseType.RESIN_STORAGE, atlas, resources, true));
+		houses.add(new PollenStorage(x + distance, y - distance, HouseType.POLLEN_STORAGE, atlas, resources, true));
 	}
-
+	
 	@Override
 	public void update(float delta) {
 		for (int i = 0; i < houses.size(); i++) {
@@ -104,31 +114,31 @@ public class HouseHandler implements GameInterface {
 		switch (type) {
 		case BASIC:
 			resources.removeResin(type.getCost());
-			placedHouse = new House(mouseX, mouseY, type, atlas);
+			placedHouse = new House(mouseX, mouseY, type, atlas, false);
 			break;
 		case POLLEN_PUMP:
 			resources.removeResin(type.getCost());
-			placedHouse = new PollenPump(mouseX, mouseY, type, atlas, resources);
+			placedHouse = new PollenPump(mouseX, mouseY, type, atlas, resources, false);
 			break;
 		case BARRACKS:
 			resources.removeResin(type.getCost());
-			placedHouse = new Barracks(mouseX, mouseY, type, atlas, mobHandler);
+			placedHouse = new Barracks(mouseX, mouseY, type, atlas, mobHandler, false);
 			break;
 		case RESIN_PUMP:
 			resources.removeResin(type.getCost());
-			placedHouse = new ResinPump(mouseX, mouseY, type, atlas, resources);
+			placedHouse = new ResinPump(mouseX, mouseY, type, atlas, resources, false);
 			break;
 		case RESIN_STORAGE:
 			resources.removeResin(type.getCost());
-			placedHouse = new ResinStorage(mouseX, mouseY, type, atlas, resources);
+			placedHouse = new ResinStorage(mouseX, mouseY, type, atlas, resources, false);
 			break;
 		case POLLEN_STORAGE:
 			resources.removeResin(type.getCost());
-			placedHouse = new PollenStorage(mouseX, mouseY, type, atlas, resources);
+			placedHouse = new PollenStorage(mouseX, mouseY, type, atlas, resources, false);
 			break;
 		case MOB_HOUSE:
 			resources.removeResin(type.getCost());
-			placedHouse = new MobHouse(mouseX, mouseY, type, atlas, resources);
+			placedHouse = new MobHouse(mouseX, mouseY, type, atlas, resources, false);
 			break;
 			
 
