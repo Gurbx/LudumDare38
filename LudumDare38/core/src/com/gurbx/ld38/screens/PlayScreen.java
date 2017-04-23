@@ -119,7 +119,7 @@ public class PlayScreen extends GameScreen {
 		ui.renderStage();
 		
 		app.batch.begin();
-		ui.renderOverStage(app.batch);
+		ui.renderOverStage(app.batch, waves.getWaveNr());
 		messageHandler.render(app.batch);
 		app.batch.end();
 		

@@ -13,7 +13,7 @@ import com.gurbx.ld38.utils.GameInterface;
 
 public class WaveHandler implements GameInterface {
 	private int waveNr;
-	private float time_between_waves = 5f;
+	private float time_between_waves = 15f;
 	private float timer;
 	private Random random;
 	private EnemyHandler enemies;
@@ -45,7 +45,7 @@ public class WaveHandler implements GameInterface {
 		int side = random.nextInt(4);
 		float x;
 		float y;
-		float range = 100;
+		float range = 300;
 		
 		switch (side) {
 		case 0:
@@ -74,14 +74,40 @@ public class WaveHandler implements GameInterface {
 			break;
 		}
 		
-		
+		//Always bugs
+		for (int i = 0; i < (1 + waveNr * random.nextInt(5)) ; i++) {
+			Vector2 position = new Vector2(x - range/2 + random.nextInt((int) range), y - range/2 + random.nextInt((int) range));
+			enemies.addEnemy(new Enemy(position, EnemyType.MINI_BUG, atlas));
+		}
 		for (int i = 0; i < (1 + waveNr * random.nextInt(5)) ; i++) {
 			Vector2 position = new Vector2(x - range/2 + random.nextInt((int) range), y - range/2 + random.nextInt((int) range));
 			enemies.addEnemy(new Enemy(position, EnemyType.BUG, atlas));
 		}
-		for (int i = 0; i < (1 + waveNr * random.nextInt(5)) ; i++) {
-			Vector2 position = new Vector2(x - range/2 + random.nextInt((int) range), y - range/2 + random.nextInt((int) range));
-			enemies.addEnemy(new Enemy(position, EnemyType.BIGGER_BUG, atlas));
+		
+		//After 4
+		if (waveNr >= 4) {
+			for (int i = 0; i < (1 + waveNr * random.nextInt(5)) ; i++) {
+				Vector2 position = new Vector2(x - range/2 + random.nextInt((int) range), y - range/2 + random.nextInt((int) range));
+				enemies.addEnemy(new Enemy(position, EnemyType.BIGGER_BUG, atlas));
+			}
+			
+		}
+		
+		//After 6
+		
+		if (waveNr >= 6) {
+			for (int i = 0; i < (1 + waveNr * random.nextInt(2)) ; i++) {
+				Vector2 position = new Vector2(x - range/2 + random.nextInt((int) range), y - range/2 + random.nextInt((int) range));
+				enemies.addEnemy(new Enemy(position, EnemyType.BIGGER_BUG, atlas));
+			}
+		}
+		
+		//After 10
+		if (waveNr >= 10) {
+			for (int i = 0; i < (1 + waveNr * random.nextInt(2)) ; i++) {
+				Vector2 position = new Vector2(x - range/2 + random.nextInt((int) range), y - range/2 + random.nextInt((int) range));
+				enemies.addEnemy(new Enemy(position, EnemyType.MEGA_BUG, atlas));
+			}
 		}
 		waveNr++;
 		
@@ -101,6 +127,10 @@ public class WaveHandler implements GameInterface {
 
 	public ArrayList<Enemy> getEnemies() {
 		return enemies.getEnemies();
+	}
+	
+	public int getWaveNr() {
+		return waveNr;
 	}
 
 }

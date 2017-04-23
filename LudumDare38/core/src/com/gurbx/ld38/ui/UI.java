@@ -1,5 +1,6 @@
 package com.gurbx.ld38.ui;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -23,6 +24,9 @@ public class UI implements GameInterface {
 	private HouseHandler houseHandler;
 	private ResourceUI resourceUI;
 	private MobHandler mobHandler;
+	private TextureRegion waveIcon;
+	private float waveX = Constants.UI_VIRTUAL_WIDTH - 64;
+	private float waveY = Constants.UI_VIRTUAL_HEIGHT - 70;
 	
 	public UI(Application app, TextureAtlas atlas, HouseHandler houseHandler, Resources resources, MobHandler mobHandler) {
 		this.app = app;
@@ -33,6 +37,7 @@ public class UI implements GameInterface {
 		houseMenu = new HouseMenu(stage, atlas, houseHandler);
 		barrackMenu = new BarrackMenu(stage, atlas, mobHandler, resources);
 		resourceUI = new ResourceUI(resources, atlas, app.font);
+		waveIcon = new TextureRegion(atlas.findRegion("waveIcon"));
 	}
 
 
@@ -76,9 +81,15 @@ public class UI implements GameInterface {
 		stage.draw();
 	}
 	
-	public void renderOverStage(SpriteBatch batch) {
+	public void renderOverStage(SpriteBatch batch, int waveNr) {
 		barrackMenu.render(batch, app.font, resourceUI.getPollenTex());
 		houseMenu.render(batch, app.font, resourceUI.getResinTex());
+		
+		//Wave icon
+		batch.draw(waveIcon, waveX, waveY);
+		app.font.setColor(Color.WHITE);
+		app.font.draw(app.batch, "Current Wave", waveX - 32, waveY + 62);
+		app.font.draw(app.batch, "" + waveNr, waveX + 20, waveY+28);
 	}
 
 	@Override
