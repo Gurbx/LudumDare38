@@ -143,9 +143,30 @@ housePlaced5
   orig: 32, 32
   offset: 0, 0
   index: -1
+houseBuild6
+  rotate: false
+  xy: 463, 33
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+houseFinal6
+  rotate: false
+  xy: 491, 33
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+housePlaced6
+  rotate: false
+  xy: 519, 33
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
 housePlaced3
   rotate: false
-  xy: 463, 34
+  xy: 547, 34
   size: 26, 25
   orig: 26, 25
   offset: 0, 0
@@ -166,56 +187,56 @@ resin
   index: -1
 biggerBug1
   rotate: false
-  xy: 491, 29
+  xy: 463, 1
   size: 20, 30
   orig: 20, 30
   offset: 0, 0
   index: -1
 biggerBug2
   rotate: false
-  xy: 513, 29
+  xy: 485, 1
   size: 20, 30
   orig: 20, 30
   offset: 0, 0
   index: -1
 biggerBug3
   rotate: false
-  xy: 535, 29
+  xy: 507, 1
   size: 20, 30
   orig: 20, 30
   offset: 0, 0
   index: -1
 biggerBug4
   rotate: false
-  xy: 557, 29
+  xy: 529, 1
   size: 20, 30
   orig: 20, 30
   offset: 0, 0
   index: -1
 houseBuild2
   rotate: false
-  xy: 579, 37
+  xy: 575, 37
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 houseDamaged2
   rotate: false
-  xy: 579, 37
+  xy: 575, 37
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 houseFinal2
   rotate: false
-  xy: 579, 37
+  xy: 575, 37
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
   index: -1
 housePlaced2
   rotate: false
-  xy: 579, 37
+  xy: 575, 37
   size: 22, 22
   orig: 22, 22
   offset: 0, 0
@@ -243,21 +264,21 @@ bug3
   index: -1
 houseBuild3
   rotate: false
-  xy: 603, 41
+  xy: 599, 41
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 houseDamaged3
   rotate: false
-  xy: 623, 41
+  xy: 619, 41
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 houseFinal3
   rotate: false
-  xy: 623, 41
+  xy: 619, 41
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
@@ -278,7 +299,7 @@ mobArcher
   index: -1
 mobWizzard
   rotate: false
-  xy: 643, 49
+  xy: 639, 49
   size: 10, 10
   orig: 10, 10
   offset: 0, 0

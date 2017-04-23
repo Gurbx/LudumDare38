@@ -126,6 +126,10 @@ public class HouseHandler implements GameInterface {
 			resources.removeResin(type.getCost());
 			placedHouse = new PollenStorage(mouseX, mouseY, type, atlas, resources);
 			break;
+		case MOB_HOUSE:
+			resources.removeResin(type.getCost());
+			placedHouse = new MobHouse(mouseX, mouseY, type, atlas, resources);
+			break;
 			
 
 		default:

@@ -21,6 +21,7 @@ public class HouseMenu {
 	private String pollenPumpDescription;
 	private String resinStorageDesc;
 	private String pollenStorageDesc;
+	private String mobHouseDescription;
 	private int hover;
 	private float x = 55;
 	private float y = 95;
@@ -46,10 +47,11 @@ public class HouseMenu {
 		resinPumpDescription = "Gathers resin";
 		resinStorageDesc = "Increases the storage capacity of resin by 100"; 
 		pollenStorageDesc = "Increases the storage capacity of pollen by 100"; 
+		mobHouseDescription = "Increases the unit capacity by 5";
 	}
 
 	private void initButtons(Stage stage, TextureAtlas atlas) {
-		houseButton = new ImageButton[5];
+		houseButton = new ImageButton[6];
 		float buttonX = 56; 
 		float buttonY = 10;
         Skin skin = new Skin(atlas);
@@ -77,12 +79,18 @@ public class HouseMenu {
         style5.imageUp = skin.getDrawable("houseButton2");
         style5.imageOver = skin.getDrawable("houseButtonOver2");
         style5.imageDown = skin.getDrawable("houseButtonPressed2");
+        
+        ImageButton.ImageButtonStyle style6 = new ImageButton.ImageButtonStyle();
+        style6.imageUp = skin.getDrawable("houseButton2");
+        style6.imageOver = skin.getDrawable("houseButtonOver2");
+        style6.imageDown = skin.getDrawable("houseButtonPressed2");
 
         houseButton[0] = new ImageButton(style1);
         houseButton[1] = new ImageButton(style2);
         houseButton[2] = new ImageButton(style3);
         houseButton[3] = new ImageButton(style4);
         houseButton[4] = new ImageButton(style5);
+        houseButton[5] = new ImageButton(style6);
         
         
         //Standard
@@ -184,6 +192,26 @@ public class HouseMenu {
             }
         });
         
+        //Mob House
+        houseButton[5].addListener( new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+            	if (!active) return;
+            	if (houseHandler.canPlaceHouse(HouseType.MOB_HOUSE) == false) return;
+            	houseHandler.placeNewHouse(HouseType.MOB_HOUSE);
+            };
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+            	super.enter(event, x, y, pointer, fromActor);
+            	hover = 6;
+            }
+            @Override
+            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+            	super.exit(event, x, y, pointer, toActor);
+            	hover = 0;
+            }
+        });
+        
         
         for (int i = 0; i < houseButton.length; i++) {
             houseButton[i].setPosition(buttonX + 64 * i, buttonY);
@@ -229,6 +257,11 @@ public class HouseMenu {
 			header = "Pollen Storage";
 			description = pollenStorageDesc;
 			type = HouseType.POLLEN_STORAGE;
+			break;
+		case 6:
+			header = "House";
+			description = mobHouseDescription;
+			type = HouseType.MOB_HOUSE;
 			break;
 
 		default:

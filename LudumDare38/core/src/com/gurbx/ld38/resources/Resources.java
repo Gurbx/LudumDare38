@@ -94,4 +94,14 @@ public class Resources {
 		return false;
 	}
 
+	public void increaseMobSize(int ammountIncreased) {
+		this.maxUnits += ammountIncreased;
+		
+	}
+
+	public void decreaseMobSize(int ammountIncreased) {
+		this.maxUnits -= ammountIncreased;
+		
+	}
+
 }
