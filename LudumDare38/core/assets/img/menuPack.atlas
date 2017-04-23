@@ -5,9 +5,16 @@ filter: Nearest,Nearest
 repeat: none
 mainMenu
   rotate: false
-  xy: 1, 151
+  xy: 1, 218
   size: 800, 800
   orig: 800, 800
+  offset: 0, 0
+  index: -1
+gameOverLogo
+  rotate: false
+  xy: 1, 151
+  size: 517, 65
+  orig: 517, 65
   offset: 0, 0
   index: -1
 menuButton
@@ -24,9 +31,16 @@ menuButtonPressed
   orig: 368, 73
   offset: 0, 0
   index: -1
+gameOverMob
+  rotate: false
+  xy: 520, 122
+  size: 257, 94
+  orig: 257, 94
+  offset: 0, 0
+  index: -1
 bgTile
   rotate: false
-  xy: 803, 887
+  xy: 803, 954
   size: 64, 64
   orig: 64, 64
   offset: 0, 0

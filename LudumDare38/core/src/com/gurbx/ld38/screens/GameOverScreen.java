@@ -21,6 +21,8 @@ public class GameOverScreen extends GameScreen {
 	private Sound select;
 	
 	private TextButton menuButton;
+	
+	private TextureRegion mob, logo;
 
 	public GameOverScreen(Application app) {
 		super(app);
@@ -33,6 +35,9 @@ public class GameOverScreen extends GameScreen {
 		bgTile = atlas.findRegion("bgTile");
 		initButtons();
 		select = app.assets.get("sound/select1.wav", Sound.class);
+		
+		mob = atlas.findRegion("gameOverMob");
+		logo = atlas.findRegion("gameOverLogo");
 		Gdx.input.setInputProcessor(stage);
 		
 	}
@@ -45,7 +50,7 @@ public class GameOverScreen extends GameScreen {
         style.down = skin.getDrawable("menuButtonPressed");
         
         menuButton = new TextButton("BACK", style);
-        menuButton.setPosition(Constants.UI_VIRTUAL_WIDTH/2-184, Constants.UI_VIRTUAL_HEIGHT/2 - 36 - 100);
+        menuButton.setPosition(Constants.UI_VIRTUAL_WIDTH/2-184, Constants.UI_VIRTUAL_HEIGHT/2 - 36 - 200);
         menuButton.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -65,6 +70,8 @@ public class GameOverScreen extends GameScreen {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		app.batch.begin();
+		app.batch.draw(logo, Constants.UI_VIRTUAL_WIDTH/2 - logo.getRegionWidth()/2, Constants.UI_VIRTUAL_HEIGHT/2 - logo.getRegionHeight()/2 + 250);
+		app.batch.draw(mob, Constants.UI_VIRTUAL_WIDTH/2 - mob.getRegionWidth()/2, Constants.UI_VIRTUAL_HEIGHT/2 - mob.getRegionHeight()/2 - 50);
 		app.batch.end();
 		
 		stage.draw();

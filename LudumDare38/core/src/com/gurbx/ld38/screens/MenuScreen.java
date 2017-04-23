@@ -24,6 +24,7 @@ public class MenuScreen extends GameScreen {
 	private TextureRegion screenTex;
 	private Stage stage;
 	private Sound select;
+	private String credits = "Made by Philip Lindberg in 48 hours for Ludum dare 38";
 
 	private TextButton playButton;
 
@@ -51,7 +52,7 @@ public class MenuScreen extends GameScreen {
         style.down = skin.getDrawable("menuButtonPressed");
         
         playButton = new TextButton("PLAY", style);
-        playButton.setPosition(Constants.UI_VIRTUAL_WIDTH/2-184, Constants.UI_VIRTUAL_HEIGHT/2 - 36 - 150);
+        playButton.setPosition(Constants.UI_VIRTUAL_WIDTH/2-184, Constants.UI_VIRTUAL_HEIGHT/2 - 36 - 160);
         playButton.addListener( new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -85,6 +86,7 @@ public class MenuScreen extends GameScreen {
 //			
 //		}
 //		app.batch.draw(logo, Constants.UI_VIRTUAL_WIDTH/2-logo.getRegionWidth()/2, Constants.UI_VIRTUAL_HEIGHT/2 - logo.getRegionHeight()/2 + 120);
+		app.font.draw(app.batch, credits, 220, 28);
 		app.batch.end();
 		
 		stage.draw();
